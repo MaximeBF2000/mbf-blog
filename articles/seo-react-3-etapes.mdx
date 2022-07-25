@@ -1,0 +1,98 @@
+---
+title: "SEO : 3 étapes pour optimiser le référencement d'un site avec React"
+desc: 'SEO en 3 étapes avec React.js'
+image: 'https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196_1280.jpg'
+date: 2020-10-01
+---
+
+Bonjour à vous 👋
+
+Aujourd'hui je viens vous parler de mes dernières découvertes récentes en matière de SEO, c'est à dire comment faire en sorte que votre site web monte dans les recherches Google, en tant que développeurs front-end.
+
+On va parler de contenu, de statégies et de technos un peu précises, en quelques étapes simples.
+
+## 1 - Mesurer et tester les performances de son site
+
+Tout d'abord, avant de chercher à améliorer quoi que ce soit, il faut avoir une petite idée de comment se porte votre site web et quels sont les points à améliorer en terme de SEO.
+
+Pour cela, vous pouvez **faire un audit SEO en ligne totalement gratuitement** afin d'avoir une idée, même vague, de la direction à prendre pour votre optimisation.
+
+Vous pouvez trouver des tas de sites web d'audit gratuit SEO en faisant une petite recherche, mais si vous ne souhaitez pas vous prendre la tête, je vous conseille [woorank](https://www.woorank.com/fr), qui offre un audit gratuit avec un bon nombres de détails et de conseils d'amélioration.
+
+## 2 - Utiliser Gatsby.js pour un code React SEO-friendly
+
+Par la suite, nous aborderons comment optimiser son contenu pour être référencé sur Google, mais nous devons tout d'abord avoir du contenu à référencer.
+
+**Mais pourquoi React ne fonctionne pas dans notre cas ?**  
+Pour faire simple, Google utilise un bot qui vient analyser le contenu HTML de votre site web au chargement, or, le fonctionnement de React (ainsi que des autres frameworks javascript classiques) et de charger une page HTML vide qui va être par la suite injectée par du code Javascript.  
+Résultat: Le bot Google trouve une page vide de contenu lors de son analyse.
+
+**La solution ?** C'est plutôt simple, il faut trouver un moyen de transformer le code javascript en HTML avant l'indéxation du bot de Google.
+
+Les 2 outils les plus utilisées pour résoudre ce problème sont Gatsby.js, et Next.js.  
+Ne connaissant pas énormément Next.js, je vais vous parler de Gatsby.
+
+**Gatsby est un générateur de site statique**, et fait donc exactement ce que nous souhaitons : il prend du code React, et le compile en fichiers statiques HTML, CSS & Javascript dans un dossier prêt pour la production / le déploiement du site.
+
+Le bot Google se retrouve alors avec tout le contenu qu'il peut analyser pour correctement nous positionner dans les recherches.
+
+## 3 - React Helmet, les meta données et le protocole OpenGraph
+
+A présent, pour développer votre référencement, il faut bien comprendre le fonctionnement des robots d'indéxation.  
+Ceux-ci visitent votre site web, lisent le contenu dessus et le rattache dans leurs recherches par rapports aux termes et sujets de votre site **s'ils les ont compris**.
+
+La première source d'informations pour ces robots sont les meta données.
+Ces données représentent l'ensemble des données introuvables sur le site web, mais décrivant les informations principales à son sujet, tel que le titre, les mots-clés, la description...
+
+Si vous utilisez Gatsby.js pour générer votre site statique comme conseillé au dessus, il vous est alors impossible de décrire ces données sans utiliser un plugin, le plus connu dans ce domaine étant React Helmet.
+
+En l'utilisant, vous pourrez alors donner à ces robots les informations essentielles du site web en créant un composant intégrant la partie _head_ à la page. Un exemple ci-dessous.
+
+```jsx
+import { Helmet } from 'react-helmet'
+
+export default function Head(MetaData) {
+  return (
+    <Helmet>
+      {/* Placez ici vos méta données */}
+      <title> Le titre de la page </title>
+      <meta
+        name="nom de propriété"
+        content="information détenue de la propriété"
+      />
+    </Helmet>
+  )
+}
+```
+
+Enfin, maintenant que vous pouvez transmettre ces informations, vous pouvez remplir votre contenu avec le protocole OpenGraph, le protocole utilisé par Facebook pour comprendre votre site web. Un exemple ci-dessous.
+
+```jsx
+export default function Head(MetaData) {
+  const { title, image, url, description } = MetaData
+  return (
+    <Helmet>
+      {/* Placez ici vos méta données */}
+      <title> Le titre de la page </title>
+      <meta
+        name="nom de propriété"
+        content="information détenue de la propriété"
+      />
+
+      {/* Protocole OpenGraph */}
+      <meta property="og:title" content={title} />
+      <meta property="og:locale" content="fr_FRANCE" />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content={image} />
+      <meta property="og:url" content={url} />
+      <meta property="og:description" content={description} />
+    </Helmet>
+  )
+}
+```
+
+## Une stratégie d'avenir
+
+Pour conclure et avancer vers votre objectif d'optimisation, choisissez un positionnement précis et travaillez vos mos-clés, votre contenu, et la sémantique de votre code HTML autour de ce positionnement en continuant constamment à tester et observer.
+
+> Soyez là où la concurrence n'est pas, et vous serez numéro 1
