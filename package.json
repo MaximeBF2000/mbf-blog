@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.75",
     "@mdx-js/loader": "^2.1.2",
     "@next/mdx": "^12.2.3",
     "glob": "^8.0.3",
