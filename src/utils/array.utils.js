@@ -3,7 +3,7 @@ import { isNil } from './others.utils'
 export const chunkArr = (arr, chunkSize) => {
   if (!chunkSize) return arr
   const newArr = []
-  const copiedArr = structuredClone(arr)
+  const copiedArr = [...arr]
 
   while (copiedArr.length > 0) newArr.push(copiedArr.splice(0, chunkSize))
 
