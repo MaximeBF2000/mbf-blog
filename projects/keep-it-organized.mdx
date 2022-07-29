@@ -4,4 +4,78 @@ desc: 'Simplify your social presence with an intuitive all-in-one plateform, man
 date: 2022-05-01
 ---
 
-> some quote
+## Managing social networks differently
+
+<Image src="/assets/projects/keepitorganized/home_screen.png" />
+<Gallery
+  images={[
+    '/assets/projects/keepitorganized/createpost_screen.png',
+    '/assets/projects/keepitorganized/scheduler_screen.png',
+    '/assets/projects/keepitorganized/login_screen.png'
+  ]}
+  gap={5}
+/>
+
+Creating content for social medias has become one of the best way to "put your name out there", and wether you are looking for a job, trying to promote your products or even make a career on the influence scene, content has proven itself to be king and can help you tremendously achieve any of those.
+
+But you already knew all that, like everyone else, so maybe you've tried creating regular content, and if you did, you probably quickly realised the ton of work that this was.
+
+In my case, about a year and a half from now, I tried creating an infograghic instagram page aiming to share some programming advices to beginners. It did not take long before this became my full time job.
+
+Of course I was a beginner, and a lot of processes could have been optimized, but still, finding ideas, filtering them, writing a baseline, creating a layout in photoshop, downloading the file and placing them in orders (I was mostly doing carrousels), then waiting for the proper time to publish... and this was only for one social network
+
+I had to find a better way, so I started looking
+
+## Searching for a solution
+
+I started looking for tools that would help save some time on those tasks.
+
+Here's what I found :
+
+- **Canva** : Probably way more approriate than Photoshop for simple layouts and way easier to use
+- **Facebook studio scheduler** : You can schedule your posts to be published automatically at a specific time, only works for facebook & instagram though
+- **Notion/Trello** : Great for organizing and genrating new ideas
+
+Great, already way better, but still not ideal for publishing on many social networks.
+
+### Enterprise solutions
+
+There are also some tools like Buffer or Hoodsuit to manage social networks professionally, but seemed quite complicated to me, plus those tools are really made for teams of marketers, not really targetting the solomedia approach I was looking for.
+
+## Building our own tool
+
+As most developers, I have the "I'll do it myself" syndrom. When I don't like the solutions offered to me, I like building my own. Plus I saw a real business potential in creating a tool targetting solopreneurs that leverages social media as a business tool.
+So I decided to start building my own implementation.
+
+### Requirements
+
+Okay let's see what we need for our product :
+
+- Creating & managing an account for the plateform
+- Attaching our social networks accounts to the plateform
+- Creating post in the app
+- Publishing from the app at a specific time
+- Format our posts to different social medias requirements (image sizes, video durations...)
+
+I can start working with that.
+
+## The tech stack I went with
+
+- **Figma** : for propotyping the entire app with every screens
+- **React** : frontend, and react-router for routing management
+- **Google Firebase** : backend as service to handle authentification & database
+
+## I made a big mistake
+
+With all that in mind, I started designing the app then building it.
+
+Auth screens, application UI, developing basic features...
+I spent about a month doing that (I'm no designer, so propotypes/mockups took a lot of time)
+
+**Did you see the MASSIVE mistake I made here ?** Cause at this point it's already done
+
+Simple, even though I had listed the main features needed in the app, I did a lot of work and wasn't focus enough on the key points.
+
+While I should have tested, gathered a base audience and focused on the core features, I worked on all the small details (mostly because I considered having a super simple UX was the differencing point I wanted to focus on).
+
+When I finally started working on linking social networks to your account (which I should have started with in terms of features), I had a pretty bad discovery. Apparently, since the [Cambridge analytica polemic](https://en.wikipedia.org/wiki/Facebook%E2%80%93Cambridge_Analytica_data_scandal), Facebook became way more rigid in them providing access to their APIs

@@ -1,11 +1,8 @@
 import Head from 'next/head'
 import { MDXRemote } from 'next-mdx-remote'
-import { serialize } from 'next-mdx-remote/serialize'
-import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeHighlight from 'rehype-highlight'
 import { blogComponents } from '../../components/blog'
-import { getPostFromSlug, getSlugs } from '../../utils/blogApi.utils'
+import { getSlugs } from '../../utils/blogApi.utils'
+import { getMdx } from 'src/utils/mdx.utils'
 import 'highlight.js/styles/atom-one-dark.css'
 
 export default function Project({ project }) {
@@ -14,26 +11,18 @@ export default function Project({ project }) {
       <Head>
         <title>{project.meta.title}</title>
       </Head>
-      <h1>{project.meta.title}</h1>
+      <h1 className="text-5xl font-bold mb-12">{project.meta.title}</h1>
       <MDXRemote {...project.source} components={blogComponents} />
+      <div className="h-24 w-full" />
     </>
   )
 }
 
 export const getStaticProps = async ({ params }) => {
   const { slug } = params
-  const { content, meta } = getPostFromSlug(slug, 'projects')
-  const mdxSource = await serialize(content, {
-    mdxOptions: {
-      rehypePlugins: [
-        rehypeSlug,
-        [rehypeAutolinkHeadings, { behavior: 'wrap' }],
-        rehypeHighlight
-      ]
-    }
-  })
+  const project = await getMdx(slug, 'projects')
 
-  return { props: { project: { source: mdxSource, meta } } }
+  return { props: { project } }
 }
 
 export const getStaticPaths = async () => {

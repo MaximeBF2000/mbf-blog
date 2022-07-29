@@ -16,7 +16,7 @@ export const SubscribeToNewsLetter = () => {
 
   return (
     <form
-      className={`rounded border border-gray-600 p-4 ${formClassBasedOnState[state]}`}
+      className={`rounded border border-gray-600 p-4 ${formClassBasedOnState[state]} mb-24`}
       onSubmit={handleSubmit}
     >
       {state === 'not_registered' && (
@@ -28,7 +28,7 @@ export const SubscribeToNewsLetter = () => {
             Hear about my latest discoveries and thoughts on tech and digital
             businesses. Unsub in a click
           </p>
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-wrap">
             <input
               placeholder="Firstname"
               type="text"

@@ -1,18 +1,36 @@
+import { useSearch } from 'src/utils/useSearch.hook'
+import { Paginate } from '../Paginate.component'
 import { ProjectItem } from '../ProjectItem.component'
 
-export function Projects({ title, projects }) {
+export function Projects({ title, projects, searchable }) {
+  const [filteredProjects, searchInputProps] = useSearch(projects, ['title'])
+
   return (
     <div className="mb-24">
-      <h2 className="text-3xl font-medium mb-12">{title}</h2>
-      <ul className="grid grid-cols-2 gap-5">
-        {projects.map(project => (
+      <div className="flex justify-between mb-12 gap-5 flex-wrap">
+        <h2 className="text-3xl font-medium">{title}</h2>
+        {searchable && (
+          <input
+            placeholder="Search articles..."
+            className="p-2 w-full sm:w-1/3 rounded text-gray-900 outline-none border border-gray-900"
+            {...searchInputProps}
+          />
+        )}
+      </div>
+      <Paginate
+        data={filteredProjects}
+        limit={8}
+        layout={({ children }) => (
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-5">{children}</ul>
+        )}
+        renderItem={project => (
           <ProjectItem
             {...project}
             description={project.desc}
             key={project.slug}
           />
-        ))}
-      </ul>
+        )}
+      />
     </div>
   )
 }

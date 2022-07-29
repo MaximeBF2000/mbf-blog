@@ -2,7 +2,9 @@ import { Projects } from 'src/components/partials'
 import { getAllPosts } from 'src/utils/blogApi.utils'
 
 export default function Articles({ projects }) {
-  return <Projects title="All my projects here" projects={projects} />
+  return (
+    <Projects title="All my projects here" projects={projects} searchable />
+  )
 }
 
 export async function getStaticProps() {
