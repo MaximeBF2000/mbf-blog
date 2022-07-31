@@ -1,10 +1,12 @@
 import { Image } from './Image.component'
 import { Gallery } from './Gallery.component'
 import { Heading } from './Heading.component'
+import { SubscribeToNewsLetter } from '../SubscribeToNewsLetter.component'
 
 export const blogComponents = {
   Image,
   Gallery,
+  NewsLetter: () => <SubscribeToNewsLetter className="mt-24 mb-0" />,
   p: props => <p {...props} className="leading-8 text-xl text-gray-300 mb-4" />,
   h1: props => <h2 {...props} className="text-5xl mt-12 mb-8" />,
   h2: props => <Heading as="h2" {...props} className="text-5xl mt-12 mb-8" />,

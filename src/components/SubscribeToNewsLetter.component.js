@@ -6,7 +6,7 @@ const formClassBasedOnState = {
   success: 'bg-green-600 flex justify-center items-center'
 }
 
-export const SubscribeToNewsLetter = () => {
+export const SubscribeToNewsLetter = ({ className }) => {
   const [state, setState] = useState('not_registered') // [not_registered, error, success]
 
   const handleSubmit = evt => {
@@ -16,7 +16,7 @@ export const SubscribeToNewsLetter = () => {
 
   return (
     <form
-      className={`rounded border border-gray-600 p-4 ${formClassBasedOnState[state]} mb-24`}
+      className={`rounded border border-gray-600 p-4 ${formClassBasedOnState[state]} mb-24 ${className}`}
       onSubmit={handleSubmit}
     >
       {state === 'not_registered' && (
