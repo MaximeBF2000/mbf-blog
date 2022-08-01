@@ -7,9 +7,15 @@ export const blogComponents = {
   Image,
   Gallery,
   NewsLetter: () => <SubscribeToNewsLetter className="mt-24 mb-0" />,
-  p: props => <p {...props} className="leading-8 text-xl text-gray-300 mb-4" />,
-  h1: props => <h2 {...props} className="text-5xl mt-12 mb-8" />,
-  h2: props => <Heading as="h2" {...props} className="text-5xl mt-12 mb-8" />,
+  p: props => (
+    <p
+      {...props}
+      className="leading-8 text-base sm:text-lg md:text-xl text-gray-300 mb-4"
+    />
+  ),
+  h2: props => (
+    <Heading as="h2" {...props} className="text-4xl md:text-5xl mt-12 mb-8" />
+  ),
   h3: props => <Heading as="h3" {...props} className="text-2xl mt-12 mb-8" />,
   pre: props => <pre {...props} className="rounded overflow-hidden my-8" />,
   ul: props => <ul {...props} className="list-disc ml-4 my-12" />,

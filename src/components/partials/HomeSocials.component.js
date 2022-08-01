@@ -1,4 +1,5 @@
 import { BsGithub, BsLinkedin, BsTwitter } from 'react-icons/bs'
+import { useMediaQuery } from 'src/utils/useMediaQuery.hook'
 
 const SocialIcon = ({ icon: Icon, name, link }) => (
   <a
@@ -12,6 +13,8 @@ const SocialIcon = ({ icon: Icon, name, link }) => (
 )
 
 export const HomeSocials = ({ numberOfGithubRepos }) => {
+  const isSmallScreen = useMediaQuery(800, true)
+
   return (
     <section className="mb-24">
       <div className="text-3xl font-medium mb-8">
@@ -20,7 +23,9 @@ export const HomeSocials = ({ numberOfGithubRepos }) => {
       <div className="flex gap-5 cursor-pointer">
         <SocialIcon
           name={`Github${
-            numberOfGithubRepos ? ` (${numberOfGithubRepos} public repos)` : ''
+            numberOfGithubRepos && !isSmallScreen
+              ? ` (${numberOfGithubRepos} public repos)`
+              : ''
           }`}
           icon={BsGithub}
           link={process.env.NEXT_PUBLIC_GITHUB_LINK}

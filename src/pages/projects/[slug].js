@@ -12,7 +12,9 @@ export default function Project({ project }) {
         title={project.meta.title}
         metas={{ description: project.meta.desc }}
       />
-      <h1 className="text-5xl font-bold mb-12">{project.meta.title}</h1>
+      <h1 className="text-4xl md:text-5xl font-bold mb-12">
+        {project.meta.title}
+      </h1>
       <MDXRemote {...project.source} components={blogComponents} />
       <div className="h-24 w-full" />
     </>

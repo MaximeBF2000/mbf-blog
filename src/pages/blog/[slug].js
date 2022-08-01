@@ -9,7 +9,9 @@ export default function Article({ post }) {
   return (
     <>
       <Head title={post.meta.title} metas={{ description: post.meta.desc }} />
-      <h1 className="text-6xl font-bold mb-12">{post.meta.title}</h1>
+      <h1 className="text-4xl md:text-5xl font-bold mb-12">
+        {post.meta.title}
+      </h1>
       <MDXRemote {...post.source} components={blogComponents} />
       <div className="h-24 w-full" />
     </>
