@@ -2,7 +2,12 @@ import { useSearch } from 'src/utils/useSearch.hook'
 import { Paginate } from '../Paginate.component'
 import { ProjectItem } from '../ProjectItem.component'
 
-export function Projects({ title, projects, searchable }) {
+export function Projects({
+  title,
+  projects,
+  hasMoreProjects = false,
+  searchable = false
+}) {
   const [filteredProjects, searchInputProps] = useSearch(projects, ['title'])
 
   return (
@@ -18,6 +23,7 @@ export function Projects({ title, projects, searchable }) {
         )}
       </div>
       <Paginate
+        className="mb-12"
         data={filteredProjects}
         limit={8}
         layout={({ children }) => (
@@ -31,6 +37,7 @@ export function Projects({ title, projects, searchable }) {
           />
         )}
       />
+      {hasMoreProjects && <Link href="/projects">See more projects</Link>}
     </div>
   )
 }

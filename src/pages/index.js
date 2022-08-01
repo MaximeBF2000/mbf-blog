@@ -33,14 +33,18 @@ export default function Index({
         posts={posts}
         hasMorePosts={hasMorePosts}
       />
-      <Projects title="👨‍💻 Last projects I've worked on" projects={projects} />
+      <Projects
+        title="👨‍💻 Last projects I've worked on"
+        projects={projects}
+        hasMoreProjects={hasMoreProjects}
+      />
       <SubscribeToNewsLetter />
     </>
   )
 }
 
 export async function getStaticProps() {
-  const postLimit = 2
+  const postLimit = 3
   const projectLimit = 4
 
   const getLimitedMetas = (objects, limit) =>
