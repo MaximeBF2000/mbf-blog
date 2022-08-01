@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import { Head } from 'src/components/seo'
 import { MDXRemote } from 'next-mdx-remote'
 import { blogComponents } from '../../components/blog'
 import { getSlugs } from '../../utils/blogApi.utils'
@@ -8,9 +8,10 @@ import 'highlight.js/styles/atom-one-dark.css'
 export default function Project({ project }) {
   return (
     <>
-      <Head>
-        <title>{project.meta.title}</title>
-      </Head>
+      <Head
+        title={project.meta.title}
+        metas={{ description: project.meta.desc }}
+      />
       <h1 className="text-5xl font-bold mb-12">{project.meta.title}</h1>
       <MDXRemote {...project.source} components={blogComponents} />
       <div className="h-24 w-full" />

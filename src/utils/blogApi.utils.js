@@ -1,5 +1,6 @@
-import path from 'node:path'
+import moment from 'moment'
 import fs from 'node:fs'
+import path from 'node:path'
 import { sync } from 'glob'
 import matter from 'gray-matter'
 
@@ -19,11 +20,7 @@ export const getSlugs = object => {
 export const getAllPosts = object => {
   const posts = getSlugs(object)
     .map(slug => getPostFromSlug(slug, object))
-    .sort((a, b) => {
-      if (a.meta.date > b.meta.date) return 1
-      if (a.meta.date < b.meta.date) return -1
-      return 0
-    })
+    .sort((a, b) => moment(a.meta.date).unix() - moment(b.meta.date).unix())
     .reverse()
   return posts
 }

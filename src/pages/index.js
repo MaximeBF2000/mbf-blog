@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { getNumberOfGithubRepositories } from 'src/utils/github.utils'
 import {
   HomeHeading,
@@ -20,7 +19,7 @@ export default function Index({
   return (
     <>
       <Head
-        title="React.js developer - Remote Freelance - Maxime FERRET"
+        title="Remote React.js / Javascript developer - Freelance - Maxime FERRET"
         metas={{
           description:
             'React.js / Next.js developer. I help you build your applications from scratch or help your team from around the world',

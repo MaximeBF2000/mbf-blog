@@ -13,6 +13,9 @@ export const blogComponents = {
   h3: props => <Heading as="h3" {...props} className="text-2xl mt-12 mb-8" />,
   pre: props => <pre {...props} className="rounded overflow-hidden my-8" />,
   ul: props => <ul {...props} className="list-disc ml-4 my-12" />,
+  ol: props => (
+    <ul {...props} className="list-decimal marker:text-xl ml-4 my-12" />
+  ),
   li: props => (
     <li className="mb-3">
       <p {...props} className="leading-8 text-xl text-gray-300" />
@@ -23,6 +26,12 @@ export const blogComponents = {
       {...props}
       target="_blank"
       className="text-white underline underline-offset-4"
+    />
+  ),
+  blockquote: props => (
+    <blockquote
+      className="relative overflow-hidden bg-gray-700 pb-2 pt-6 pl-8 pr-4 my-8 rounded italic before:content-[''] before:absolute before:left-0 before:top-0 before:w-4 before:h-full before:bg-secondary before:opacity-70 hover:before:opacity-100 before:transition-all"
+      {...props}
     />
   )
 }

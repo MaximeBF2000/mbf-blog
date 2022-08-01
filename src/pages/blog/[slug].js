@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import { Head } from 'src/components/seo'
 import { MDXRemote } from 'next-mdx-remote'
 import { blogComponents } from '../../components/blog'
 import { getSlugs } from '../../utils/blogApi.utils'
@@ -8,9 +8,7 @@ import 'highlight.js/styles/atom-one-dark.css'
 export default function Article({ post }) {
   return (
     <>
-      <Head>
-        <title>{post.meta.title}</title>
-      </Head>
+      <Head title={post.meta.title} metas={{ description: post.meta.desc }} />
       <h1 className="text-6xl font-bold mb-12">{post.meta.title}</h1>
       <MDXRemote {...post.source} components={blogComponents} />
       <div className="h-24 w-full" />
