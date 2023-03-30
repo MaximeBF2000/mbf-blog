@@ -1,4 +1,3 @@
-import moment from 'moment'
 import fs from 'node:fs'
 import path from 'node:path'
 import { sync } from 'glob'
@@ -17,10 +16,12 @@ export const getSlugs = object => {
   })
 }
 
+const getUnixTime = date => new Date(date).getTime()
+
 export const getAllPosts = object => {
   const posts = getSlugs(object)
     .map(slug => getPostFromSlug(slug, object))
-    .sort((a, b) => moment(a.meta.date).unix() - moment(b.meta.date).unix())
+    .sort((a, b) => getUnixTime(a.meta.date) - getUnixTime(b.meta.date))
     .reverse()
   return posts
 }

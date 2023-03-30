@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import moment from 'moment'
+import { format as formatDate } from 'date-fns'
 import { useSearch } from 'src/utils/useSearch.hook'
 import { Paginate } from '../Paginate.component'
 
@@ -31,12 +31,12 @@ export function ArticlesList({
         renderItem={post => (
           <li className="mb-12 last:mb-0" key={post.slug}>
             <Link href={`/blog/${post.slug}`}>
-              <h3 className="cursor-pointer text-gray-100 text-3xl mb-2 hover:underline focus:underline underline-offset-4">
+              <h3 className="cursor-pointer text-gray-100 text-3xl mb-1 hover:underline focus:underline underline-offset-4">
                 {post.title}
               </h3>
             </Link>
-            <p className="text-gray-300 text-md">
-              ({moment(new Date(post.date)).format('YYYY/MM/DD')})
+            <p className="text-gray-300 text-md mb-4 italic text-sm">
+              {formatDate(new Date(post.date), 'dd/MM/yyyy')}
             </p>
             <p className="text-gray-300 text-md">{post.desc}</p>
           </li>
