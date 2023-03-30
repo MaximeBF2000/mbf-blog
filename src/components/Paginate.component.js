@@ -4,6 +4,7 @@ import { chunkArr, range } from '../utils/array.utils'
 export const Paginate = ({
   data,
   renderItem,
+  renderEmpty = () => null,
   limit = 5,
   layout,
   className
@@ -18,13 +19,17 @@ export const Paginate = ({
 
   const Layout = layout ?? 'div'
 
+  const pageData = paginatedData[currentPage - 1] || []
+
   return (
     <div className={className}>
-      <Layout>
-        {paginatedData[currentPage - 1].map((item, index) =>
-          renderItem(item, index)
-        )}
-      </Layout>
+      {pageData.length > 0 ? (
+        <Layout>
+          {pageData.map((item, index) => renderItem(item, index))}
+        </Layout>
+      ) : (
+        renderEmpty()
+      )}
       {paginatedData.length > 1 && (
         <div className="mt-12 flex gap-12">
           <button

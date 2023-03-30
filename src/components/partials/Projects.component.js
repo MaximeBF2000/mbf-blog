@@ -36,6 +36,11 @@ export function Projects({
             key={project.slug}
           />
         )}
+        renderEmpty={() => (
+          <p>
+            No projects to display for the search "{searchInputProps?.value}"
+          </p>
+        )}
       />
       {hasMoreProjects && <Link href="/projects">See more projects</Link>}
     </div>

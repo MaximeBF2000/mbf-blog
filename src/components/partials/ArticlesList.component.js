@@ -41,6 +41,11 @@ export function ArticlesList({
             <p className="text-gray-300 text-md">{post.desc}</p>
           </li>
         )}
+        renderEmpty={() => (
+          <p>
+            No articles to display for the search "{searchInputProps?.value}"
+          </p>
+        )}
       />
       {hasMorePosts && <Link href="/blog">See more posts</Link>}
     </section>
