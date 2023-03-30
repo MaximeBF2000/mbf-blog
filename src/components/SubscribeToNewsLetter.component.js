@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useInput } from 'src/utils/forms.utils'
 
 const formClassBasedOnState = {
   not_registered: 'bg-gray-700',
@@ -8,10 +9,45 @@ const formClassBasedOnState = {
 
 export const SubscribeToNewsLetter = ({ className }) => {
   const [state, setState] = useState('not_registered') // [not_registered, error, success]
+  const [error, setError] = useState(null)
+  const [firstName, firstNameInputProps] = useInput('')
+  const [email, emailInputProps] = useInput('')
 
-  const handleSubmit = evt => {
+  useEffect(() => {
+    if (state === 'error') {
+      setTimeout(() => {
+        setError(null)
+        setState('not_registered')
+      }, 2000)
+    }
+  }, [state])
+
+  const handleSubmit = async evt => {
     evt.preventDefault()
-    setState('success')
+
+    try {
+      console.log('before fetching')
+      const { error } = await fetch('/api/subscribe_mail', {
+        method: 'POST',
+        body: JSON.stringify({ firstName, email }),
+        headers: { 'Content-type': 'application/json' }
+      }).then(res => res.json())
+
+      console.log({ error })
+
+      if (error) {
+        setState('error')
+        setError(error)
+        return
+      }
+
+      setState('success')
+    } catch (err) {
+      setState('error')
+      setError(
+        'There has been an error when registering your email, you can retry in a few minutes.'
+      )
+    }
   }
 
   return (
@@ -33,15 +69,20 @@ export const SubscribeToNewsLetter = ({ className }) => {
               placeholder="Firstname"
               type="text"
               className="flex-1 p-2 rounded outline-none ring-primary text-gray-900 focus-within:ring-2 focus:ring-2"
-              // required
+              required
+              {...firstNameInputProps}
             />
             <input
               placeholder="Email"
               type="email"
               className="flex-1 p-2 rounded outline-none ring-primary text-gray-900 focus-within:ring-2 focus:ring-2"
-              // required
+              required
+              {...emailInputProps}
             />
-            <button className="rounded bg-gray-900 px-6 py-2 transition-all hover:bg-secondary focus:bg-secondary">
+            <button
+              className="rounded bg-gray-900 px-6 py-2 transition-all hover:bg-primary focus:bg-primary"
+              type="submit"
+            >
               💌 Subscribe
             </button>
           </div>
@@ -50,17 +91,13 @@ export const SubscribeToNewsLetter = ({ className }) => {
       {state === 'success' && (
         <>
           <p className="text-lg">
-            Success 🎉 You've been registered. Check your email for a little
-            surprise ;)
+            Success 🎉 You've been registered. See you soon in your mails :)
           </p>
         </>
       )}
       {state === 'error' && (
         <>
-          <p className="text-lg">
-            There has been an error when registering your email, you can retry
-            in a few minutes.
-          </p>
+          <p className="text-lg">{error}</p>
         </>
       )}
     </form>

@@ -5,10 +5,10 @@ const SocialIcon = ({ icon: Icon, name, link }) => (
   <a
     href={link}
     target="_blank"
-    className="flex-1 border rounded p-4 flex flex-col items-center justify-center text-gray-300 border-gray-300 transition-all hover:text-primary hover:border-primary focus:text-primary focus:border-primary text-center"
+    className="flex-1 sm:border rounded p-4 flex flex-col items-center justify-center text-gray-300 border-gray-300 transition-all hover:text-primary hover:border-primary focus:text-primary focus:border-primary text-center"
   >
     <Icon className="w-10 h-10 mb-2" />
-    <p className="text-lg">{name}</p>
+    <p className="text-lg hidden sm:block">{name}</p>
   </a>
 )
 

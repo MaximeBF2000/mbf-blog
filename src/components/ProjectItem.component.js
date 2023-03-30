@@ -4,7 +4,7 @@ import { BsArrowRight } from 'react-icons/bs'
 
 export const ProjectItem = ({ title, slug, date, description }) => {
   return (
-    <li className="cursor-pointer border transition-all hover:text-secondary focus:text-secondary hover:border-secondary focus:border-secondary">
+    <li className="cursor-pointer border transition-all hover:text-primary focus:text-primary hover:border-primary focus:border-primary">
       <Link href={`/projects/${slug}`}>
         <div className="p-4">
           <div className="flex justify-between items-center mb-4">

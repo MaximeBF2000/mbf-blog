@@ -36,7 +36,7 @@ export const blogComponents = {
   ),
   blockquote: props => (
     <blockquote
-      className="relative overflow-hidden bg-gray-700 pb-2 pt-6 pl-8 pr-4 my-8 rounded italic before:content-[''] before:absolute before:left-0 before:top-0 before:w-4 before:h-full before:bg-secondary before:opacity-70 hover:before:opacity-100 before:transition-all"
+      className="relative overflow-hidden bg-gray-700 pb-2 pt-6 pl-8 pr-4 my-8 rounded italic before:content-[''] before:absolute before:left-0 before:top-0 before:w-4 before:h-full before:bg-primary before:opacity-70 hover:before:opacity-100 before:transition-all"
       {...props}
     />
   )
