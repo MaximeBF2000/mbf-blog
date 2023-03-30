@@ -1,4 +1,6 @@
-import { prisma } from 'prisma/client'
+import { promises as fs } from 'node:fs'
+import { resolve as resolvePath } from 'path'
+import { csvContentToJsonObject } from 'src/BackendFunctions/csvContentToJsonObject'
 
 export default async function handleMailSubscription(req, res) {
   if (req.method !== 'POST')
@@ -6,20 +8,24 @@ export default async function handleMailSubscription(req, res) {
 
   const { email, firstName } = req.body
 
-  const alreadyExists = await prisma.user.findFirst({
-    select: { id: true },
-    where: { email }
-  })
+  const userDbPath = resolvePath(
+    __dirname,
+    '..',
+    '..',
+    '..',
+    '..',
+    'user.db.csv'
+  )
 
-  if (alreadyExists)
+  const csvContent = await fs.readFile(userDbPath, 'utf-8')
+  const users = csvContentToJsonObject(csvContent)
+
+  const userAlreadyExists = users.find(user => user.email === email)
+
+  if (userAlreadyExists)
     return res.status(409).json({ error: 'User already exists.', user: null })
 
-  const user = await prisma.user.create({
-    data: {
-      email,
-      firstname: firstName
-    }
-  })
+  await fs.appendFile(userDbPath, `${email},${firstName}\n`, 'utf-8')
 
-  return res.status(201).json({ error: null, user })
+  return res.status(201).json({ error: null, user: { email, firstName } })
 }
