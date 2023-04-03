@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useInput } from 'src/utils/forms.utils'
+import { isValidEmail } from 'src/utils/string.utils'
 
 const formClassBasedOnState = {
   not_registered: 'bg-gray-700',
@@ -25,15 +26,18 @@ export const SubscribeToNewsLetter = ({ className }) => {
   const handleSubmit = async evt => {
     evt.preventDefault()
 
+    if (!isValidEmail(email)) {
+      setState('error')
+      setError('Please provide a valid email')
+      return
+    }
+
     try {
-      console.log('before fetching')
       const { error } = await fetch('/api/subscribe_mail', {
         method: 'POST',
         body: JSON.stringify({ firstName, email }),
         headers: { 'Content-type': 'application/json' }
       }).then(res => res.json())
-
-      console.log({ error })
 
       if (error) {
         setState('error')
@@ -68,14 +72,14 @@ export const SubscribeToNewsLetter = ({ className }) => {
             <input
               placeholder="Firstname"
               type="text"
-              className="flex-1 p-2 rounded outline-none ring-primary text-gray-900 focus-within:ring-2 focus:ring-2"
+              className="flex-1 p-2 rounded outline-none text-gray-900 focus:focus-within:outline focus:focus-within:outline-primary/80"
               required
               {...firstNameInputProps}
             />
             <input
               placeholder="Email"
               type="email"
-              className="flex-1 p-2 rounded outline-none ring-primary text-gray-900 focus-within:ring-2 focus:ring-2"
+              className="flex-1 p-2 rounded outline-none text-gray-900 focus:focus-within:outline focus:focus-within:outline-primary/80"
               required
               {...emailInputProps}
             />

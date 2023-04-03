@@ -1,3 +1,4 @@
+import profile from '../../../profile.json'
 import { BsGithub, BsLinkedin, BsTwitter } from 'react-icons/bs'
 import { useMediaQuery } from 'src/utils/useMediaQuery.hook'
 
@@ -28,17 +29,17 @@ export const HomeSocials = ({ numberOfGithubRepos }) => {
               : ''
           }`}
           icon={BsGithub}
-          link={process.env.NEXT_PUBLIC_GITHUB_LINK}
+          link={profile.socials.github}
         />
         <SocialIcon
           name="LinkedIn"
           icon={BsLinkedin}
-          link={process.env.NEXT_PUBLIC_LINKEDIN_LINK}
+          link={profile.socials.linkedin}
         />
         <SocialIcon
           name="Twitter"
           icon={BsTwitter}
-          link={process.env.NEXT_PUBLIC_TWITTER_LINK}
+          link={profile.socials.twitter}
         />
       </div>
     </section>

@@ -1,31 +1,33 @@
-import { promises as fs } from 'node:fs'
-import { resolve as resolvePath } from 'path'
-import { csvContentToJsonObject } from 'src/BackendFunctions/csvContentToJsonObject'
+import { AirtableTable } from 'src/utils/airtable'
 
 export default async function handleMailSubscription(req, res) {
   if (req.method !== 'POST')
     throw new Error('/api/subcribe_mail only accept POST requests')
 
-  const { email, firstName } = req.body
+  try {
+    const { email, firstName } = req.body
 
-  const userDbPath = resolvePath(
-    __dirname,
-    '..',
-    '..',
-    '..',
-    '..',
-    'user.db.csv'
-  )
+    const usersTable = new AirtableTable('users')
 
-  const csvContent = await fs.readFile(userDbPath, 'utf-8')
-  const users = csvContentToJsonObject(csvContent)
+    const records = await usersTable.getRecords()
+    const userAlreadyExists = records.find(record => record.email === email)
 
-  const userAlreadyExists = users.find(user => user.email === email)
+    if (userAlreadyExists)
+      return res.status(409).json({ error: 'User already exists.', user: null })
 
-  if (userAlreadyExists)
-    return res.status(409).json({ error: 'User already exists.', user: null })
+    await usersTable.addRecord({
+      email,
+      firstname: firstName
+    })
 
-  await fs.appendFile(userDbPath, `${email},${firstName}\n`, 'utf-8')
+    return res.status(201).json({ error: null, user: { email, firstName } })
+  } catch (error) {
+    console.error('[api/subscribe_mail]: ', error)
 
-  return res.status(201).json({ error: null, user: { email, firstName } })
+    res.status(500).json({
+      error:
+        'There has been an error registering you. Please retry in a few minutes or contact me.',
+      user: null
+    })
+  }
 }
