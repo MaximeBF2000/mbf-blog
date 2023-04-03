@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useInput } from 'src/utils/forms.utils'
 import { isValidEmail } from 'src/utils/string.utils'
+import { Loader } from './Loader.component'
 
 const formClassBasedOnState = {
   not_registered: 'bg-gray-700',
@@ -10,6 +11,7 @@ const formClassBasedOnState = {
 
 export const SubscribeToNewsLetter = ({ className }) => {
   const [state, setState] = useState('not_registered') // [not_registered, error, success]
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [firstName, firstNameInputProps] = useInput('')
   const [email, emailInputProps] = useInput('')
@@ -33,11 +35,14 @@ export const SubscribeToNewsLetter = ({ className }) => {
     }
 
     try {
+      setLoading(true)
       const { error } = await fetch('/api/subscribe_mail', {
         method: 'POST',
         body: JSON.stringify({ firstName, email }),
         headers: { 'Content-type': 'application/json' }
       }).then(res => res.json())
+
+      setLoading(false)
 
       if (error) {
         setState('error')
@@ -84,10 +89,11 @@ export const SubscribeToNewsLetter = ({ className }) => {
               {...emailInputProps}
             />
             <button
-              className="rounded bg-gray-900 px-6 py-2 transition-all hover:bg-primary focus:bg-primary"
+              className="rounded bg-gray-900 px-6 py-2 transition-all hover:bg-primary focus:bg-primary flex gap-3 items-center"
               type="submit"
             >
-              💌 Subscribe
+              {loading && <Loader className="text-white w-5 h-5" />}
+              <span>{!loading && '💌'} Subscribe</span>
             </button>
           </div>
         </>

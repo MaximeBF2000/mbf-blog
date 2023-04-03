@@ -1,4 +1,5 @@
 import { AirtableTable } from 'src/utils/airtable'
+import { Slack } from 'src/utils/slack'
 
 export default async function handleMailSubscription(req, res) {
   if (req.method !== 'POST')
@@ -19,6 +20,10 @@ export default async function handleMailSubscription(req, res) {
       email,
       firstname: firstName
     })
+
+    await Slack.notify(
+      `✉️ New User Email @maxime-ferret.vercel.app\nEmail: ${email}\nFirstname: ${firstName}\nCheck database at: https://airtable.com/appWHAstYwOjG9w7H/tblFoi8phsESpF3dy/viw3546PGSFDV9QgO?blocks=hide`
+    )
 
     return res.status(201).json({ error: null, user: { email, firstName } })
   } catch (error) {
