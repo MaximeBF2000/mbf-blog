@@ -1,5 +1,6 @@
 import { AirtableTable } from 'src/utils/airtable'
 import { Slack } from 'src/utils/slack'
+import { capitalize } from 'src/utils/string.utils'
 
 export default async function handleMailSubscription(req, res) {
   if (req.method !== 'POST')
@@ -18,11 +19,13 @@ export default async function handleMailSubscription(req, res) {
 
     await usersTable.addRecord({
       email,
-      firstname: firstName
+      firstname: capitalize(firstName)
     })
 
     await Slack.notify(
-      `✉️ New User Email @maxime-ferret.vercel.app\nEmail: ${email}\nFirstname: ${firstName}\nCheck database at: https://airtable.com/appWHAstYwOjG9w7H/tblFoi8phsESpF3dy/viw3546PGSFDV9QgO?blocks=hide`
+      `✉️ New User Email @maxime-ferret.vercel.app\nEmail: ${email}\nFirstname: ${capitalize(
+        firstName
+      )}\nCheck database at: https://airtable.com/appWHAstYwOjG9w7H/tblFoi8phsESpF3dy/viw3546PGSFDV9QgO?blocks=hide`
     )
 
     return res.status(201).json({ error: null, user: { email, firstName } })
