@@ -7,10 +7,10 @@ export class AirtableTable {
   #table
 
   constructor(tableName) {
-    this.#table = this.getTable(TABLE_BY_NAME[tableName])
+    this.#table = this.#getTable(TABLE_BY_NAME[tableName])
   }
 
-  getTable({ baseId, tableName }) {
+  #getTable({ baseId, tableName }) {
     AirtableLib.configure({
       apiKey: process.env.AIRTABLE_API_KEY
     })
@@ -55,6 +55,6 @@ export class AirtableTable {
 
   async deleteRecords(ids) {
     const deletedRecords = await this.#table.destroy(ids)
-    return getRecordsFields(deletedRecords)?.[0]
+    return getRecordsFields(deletedRecords)
   }
 }

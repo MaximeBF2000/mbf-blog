@@ -8,11 +8,6 @@ class SlackBase {
         },
         body: JSON.stringify({ text })
       })
-
-      console.log(
-        'Message sent to slack to webhook: ',
-        process.env.SLACK_WEBHOOK_URL
-      )
     } catch (error) {
       console.error('[slack/notify]: ', error)
     }

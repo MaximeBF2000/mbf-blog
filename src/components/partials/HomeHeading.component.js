@@ -17,6 +17,7 @@ export const HomeHeading = () => {
           width={200}
           height={200}
           className="rounded-full"
+          alt="Profile picture of Maxime FERRET"
         />
       </div>
     </section>
