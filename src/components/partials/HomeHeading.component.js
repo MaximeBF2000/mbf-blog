@@ -12,7 +12,7 @@ export const HomeHeading = () => {
             I ship efficient software that really benefits the users 🚀 <br />
             React ⚛️ Node ✨
           </p>
-          <Link href="/assets/cv.pdf">
+          <Link href="https://drive.google.com/file/d/180DChGiKj2Lem-zvExJ0n8fmpM7cSiJd/view?usp=sharing">
             <a
               className="block mt-4 underline underline-offset-2"
               target="_blank"
