@@ -1,4 +1,4 @@
-import { Projects } from 'src/components/partials'
+import { Projects, SubscribeToNewsLetter } from 'src/components/partials'
 import { Head } from 'src/components/seo'
 import { getAllPosts } from 'src/utils/blogApi.utils'
 
@@ -14,6 +14,7 @@ export default function Articles({ projects }) {
         }}
       />
       <Projects title="All my projects here" projects={projects} searchable />
+      <SubscribeToNewsLetter />
     </>
   )
 }

@@ -4,6 +4,7 @@ import { blogComponents } from '../../components/blog'
 import { getSlugs } from '../../utils/blogApi.utils'
 import { getMdx } from 'src/utils/mdx.utils'
 import 'highlight.js/styles/atom-one-dark.css'
+import { SubscribeToNewsLetter } from 'src/components/SubscribeToNewsLetter.component'
 
 export default function Project({ project }) {
   return (
@@ -17,6 +18,7 @@ export default function Project({ project }) {
       </h1>
       <MDXRemote {...project.source} components={blogComponents} />
       <div className="h-24 w-full" />
+      <SubscribeToNewsLetter />
     </>
   )
 }

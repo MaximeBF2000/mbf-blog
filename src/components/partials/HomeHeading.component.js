@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export const HomeHeading = () => {
   return (
@@ -11,6 +12,14 @@ export const HomeHeading = () => {
             I ship efficient software that really benefits the users 🚀 <br />
             React ⚛️ Node ✨
           </p>
+          <Link href="/assets/cv.pdf">
+            <a
+              className="block mt-4 underline underline-offset-2"
+              target="_blank"
+            >
+              Read my CV
+            </a>
+          </Link>
         </div>
         <Image
           src="/assets/profilPic.jpeg"

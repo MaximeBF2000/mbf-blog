@@ -1,4 +1,4 @@
-import { ArticlesList } from 'src/components/partials'
+import { ArticlesList, SubscribeToNewsLetter } from 'src/components/partials'
 import { Head } from 'src/components/seo'
 import { getAllPosts } from 'src/utils/blogApi.utils'
 
@@ -14,6 +14,7 @@ export default function Articles({ posts }) {
         }}
       />
       <ArticlesList title="All my articles here" posts={posts} searchable />
+      <SubscribeToNewsLetter />
     </>
   )
 }
