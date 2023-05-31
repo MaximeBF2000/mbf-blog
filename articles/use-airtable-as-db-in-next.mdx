@@ -1,0 +1,157 @@
+---
+title: 'How to use Airtable as your database with Next.js?'
+desc: 'Using Airtable as your database with Next.js, a step-by-step guide'
+img: 'https://cdn.pixabay.com/photo/2018/04/27/14/33/writer-3354848_1280.jpg'
+date: 2022-03-15
+---
+
+Are you a Next.js developer who doesn't want to hassle with managing a backend server solely for handling your database (DB)? Or maybe you don't want to pay for hosting your DB when you'll be working with a relatively small amount of data?
+
+That was recently the case for me with an app that didn't require an entire complex architecture and wasn't going to receive millions of users (which is often the case for any beta version of an app, by the way).
+
+I found a super simple solution that I was able to implement in just a few minutes. It allows me to keep the app frontend-only without managing a server (by leveraging Next.js serverless functions, easily and freely hosted on Vercel). It's incredibly straightforward to set up and use, and it integrates seamlessly with Next.js. The solution I'm talking about is Airtable.
+
+Airtable is like a "super Excel" that enables you to easily store and manage data in various views. It is widely recognized and used, particularly in the No-Code/Low-Code sphere, thanks to its integration simplicity.
+
+Here, I'll show you how I implemented Airtable in my app to retrieve user emails.
+
+### Setting Up a Table in Airtable
+
+The first step is to create an Airtable account and set up a table.
+To interact with Airtable, you'll need three things:
+
+- An API key
+- The Base ID
+- The table name
+
+To get started, create a Base in Airtable:
+
+<Image
+  src="/assets/articles/airtable-db-in-next/create-base.png"
+  layout="fill"
+/>
+
+### Obtaining the API Key
+
+To obtain the API key, go to [https://airtable.com/create/tokens](https://airtable.com/create/tokens).
+
+Then, create a new "Personal access token" and provide the following scope:
+
+- `schema.bases:read`
+- `data.records:read`
+- `data.records:write`
+
+<Image
+  src="/assets/articles/airtable-db-in-next/create-token.png"
+  layout="fill"
+/>
+
+### Obtaining the Base ID
+
+Once the table is created, you can find the table name (which can be changed) at the top left corner. To retrieve the Base ID:
+
+1. Set up the structure of your data.
+2. Click on the "Help" or "Aide" button in the top right corner.
+3. A popup will appear; click on "API Documentation."
+
+<Image
+  src="/assets/articles/airtable-db-in-next/go-to-api-doc.png"
+  layout="fill"
+/>
+
+You'll be redirected to a page where you can find the Base ID.
+
+<Image
+  src="/assets/articles/airtable-db-in-next/get-base-id-from-doc.png"
+  layout="fill"
+/>
+
+Now we have everything we need to interact with Airtable from our Next.js app.
+
+### Protecting this Information
+
+Sensitive information such as the API key or Base ID should not be exposed to the public. Make sure to store these details in your `.env.local` file during development, and configure them as environment variables with your chosen hosting provider (if you're using Git, remember to add the `.env.local` file to your `.gitignore` as well).
+
+### Creating an Abstraction to Interact with Airtable
+
+To start using Airtable, we'll use the official JavaScript SDK:
+
+```bash
+npm install airtable // OR yarn add airtable
+```
+
+To manipulate the SDK,
+
+we'll create a simple abstraction that allows us to retrieve, add, delete, or modify data in our table:
+
+```jsx
+import AirtableLib from 'airtable'
+
+const getRecordsFields = records => records?.map(record => record?.fields)
+
+export class AirtableTable {
+  #table
+
+  constructor({ baseId, tableName }) {
+    this.#table = this.#getTable({ baseId, tableName })
+  }
+
+  #getTable({ baseId, tableName }) {
+    AirtableLib.configure({
+      apiKey: process.env.AIRTABLE_API_KEY
+    })
+
+    const base = AirtableLib.base(baseId)
+    const table = base(tableName)
+
+    return table
+  }
+
+  async getRecords() {
+    // ℹ️ Get the first 100 records
+    const records = await this.#table.select({}).firstPage()
+    return getRecordsFields(records)
+  }
+
+  async addRecord(fields) {
+    const addedRecords = await this.#table.create([
+      {
+        fields
+      }
+    ])
+
+    return getRecordsFields(addedRecords)?.[0]
+  }
+
+  async updateRecord({ id, fields }) {
+    const updatedRecords = await this.#table.update([
+      {
+        id,
+        fields
+      }
+    ])
+    return getRecordsFields(updatedRecords)?.[0]
+  }
+
+  async deleteRecords(ids) {
+    const deletedRecords = await this.#table.destroy(ids)
+    return getRecordsFields(deletedRecords)?.[0]
+  }
+}
+```
+
+That's about it! You can now interact with the table in this manner, for example, from an API route:
+
+```jsx
+export default function getUsers(req, res) {
+  const usersTable = new AirtableTable({
+    baseId: process.env.AIRTABLE_BASE_ID,
+    tableName: 'YOUR_TABLE_NAME'
+  })
+
+  const users = await usersTable.getRecords()
+  res.json(users)
+}
+```
+
+<NewsLetter />

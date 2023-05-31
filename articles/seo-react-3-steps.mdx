@@ -1,0 +1,96 @@
+---
+title: 'SEO: 3 steps to optimize your website ranking with React'
+desc: '3 steps to optimize SEO with React.js'
+image: 'https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196_1280.jpg'
+date: 2020-10-01
+---
+
+Hello there! 👋
+
+Today, I want to talk to you about my recent discoveries in SEO, specifically about how to improve the ranking of your website on Google as a front-end developer.
+
+We will discuss content, strategies, and some specific technologies in a few simple steps.
+
+## 1 - Measure and Test the Performance of Your Site
+
+First and foremost, before attempting to improve anything, it's important to have an idea of how your website is performing and identify areas for SEO improvement.
+
+To do this, you can **conduct a free online SEO audit** to get a general sense of the direction you need to take for optimization.
+
+You can find various websites offering free SEO audit tools with a quick search, but if you don't want to go through the hassle, I recommend [Woorank](https://www.woorank.com/en). They provide a free audit that includes detailed analysis and improvement suggestions.
+
+## 2 - Use Gatsby.js for SEO-Friendly React Code
+
+Next, we'll explore how to optimize your content for Google indexing, but first, we need to have content to index.
+
+**But why doesn't React work in this case?**  
+To put it simply, Google uses a bot to analyze the HTML content of your website upon loading. However, React (as well as other traditional JavaScript frameworks) works by loading an empty HTML page, which is later populated with JavaScript code.  
+As a result, the Google bot encounters an empty page during its analysis.
+
+**The solution?** It's rather simple: we need to find a way to transform the JavaScript code into HTML before Google's bot indexes it.
+
+The two most commonly used tools to solve this problem are Gatsby.js and Next.js.  
+Since I'm not very familiar with Next.js, I will focus on Gatsby.
+
+**Gatsby is a static site generator** that does precisely what we need: it takes React code and compiles it into static HTML, CSS, and JavaScript files in a production-ready folder for site deployment.
+
+This way, the Google bot has all the content it can analyze to properly position us in search results.
+
+## 3 - React Helmet, Meta Tags, and the OpenGraph Protocol
+
+Now, to enhance your website's SEO, it's important to understand how indexing robots work.  
+These robots visit your website, read its content, and associate it with relevant search terms and topics **if they understand them**.
+
+The primary source of information for these robots is the meta tags.
+These tags contain data that is not visible on the website but provides essential information about it, such as the title, keywords, and description.
+
+If you're using Gatsby.js to generate your static site as recommended above. There are several plugins you could use to describe your metadatas. The most well-known plugin in this domain is React Helmet.
+
+By using React Helmet, you can provide these robots with the essential information about your website by creating a component that integrates the `_head_` section of the page. Here's an example:
+
+```jsx
+import { Helmet } from 'react-helmet'
+
+export default function Head(MetaData) {
+  return (
+    <Helmet>
+      {/* Place your meta tags here */}
+      <title>The page title</title>
+      <meta name="property name" content="property information" />
+    </Helmet>
+  )
+}
+```
+
+Finally, now that you can transmit this information, you can enrich
+
+your content using the OpenGraph protocol, the protocol used by Facebook to understand your website. Here's an example:
+
+```jsx
+export default function Head(MetaData) {
+  const { title, image, url, description } = MetaData
+  return (
+    <Helmet>
+      {/* Place your meta tags here */}
+      <title>The page title</title>
+      <meta name="property name" content="property information" />
+
+      {/* OpenGraph Protocol */}
+      <meta property="og:title" content={title} />
+      <meta property="og:locale" content="en_US" />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content={image} />
+      <meta property="og:url" content={url} />
+      <meta property="og:description" content={description} />
+    </Helmet>
+  )
+}
+```
+
+## A Strategy for the Future
+
+To conclude and move forward with your optimization goals, choose a specific positioning, and work on your keywords, content, and HTML code semantics around that positioning while constantly testing and observing.
+
+> Be where the competition isn't, and you'll be number one.
+
+<NewsLetter />
