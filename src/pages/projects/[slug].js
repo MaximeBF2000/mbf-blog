@@ -9,9 +9,9 @@ import { SubscribeToNewsLetter } from 'src/components/SubscribeToNewsLetter.comp
 
 export default function Project({ project }) {
   const title = get(project, 'meta.title')
-  const keywords = split(get(post, 'meta.keywords', ''), ', ')
-  const description = get(post, 'meta.desc')
-  const image = get(post, 'meta.image')
+  const keywords = split(get(project, 'meta.keywords', ''), ', ')
+  const description = get(project, 'meta.desc')
+  const image = get(project, 'meta.image')
 
   return (
     <>
