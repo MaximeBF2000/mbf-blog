@@ -8,18 +8,16 @@ import 'highlight.js/styles/atom-one-dark.css'
 import { SubscribeToNewsLetter } from 'src/components/SubscribeToNewsLetter.component'
 
 export default function Article({ post }) {
+  const title = get(post, 'meta.title')
   const keywords = split(get(post, 'meta.keywords', ''), ', ')
-
-  console.log({ keywords })
+  const description = get(post, 'meta.desc')
+  const image = get(post, 'meta.image')
 
   return (
     <>
-      <Head
-        title={post.meta.title}
-        metas={{ description: post.meta.desc, keywords }}
-      />
+      <Head title={title} metas={{ description, keywords, image }} />
       <h1 className="text-4xl md:text-5xl font-bold mb-12 !leading-normal">
-        {post.meta.title}
+        {title}
       </h1>
       <MDXRemote {...post.source} components={blogComponents} />
       <div className="h-24 w-full" />

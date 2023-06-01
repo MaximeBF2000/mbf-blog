@@ -74,7 +74,7 @@ export const SubscribeToNewsLetter = ({ className }) => {
             businesses. Unsub in a click.
           </p>
           <p className="text-gray-300 mb-8">
-            Or you can contact by email by{' '}
+            Or you can contact me by email by{' '}
             <a
               href="mailto:maxime.bounaas@gmail.com"
               target="_blank"
