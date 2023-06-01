@@ -12,14 +12,20 @@ export const HomeHeading = () => {
             I ship efficient software that really benefits the users 🚀 <br />
             React ⚛️ Node ✨
           </p>
-          <Link href="https://drive.google.com/file/d/180DChGiKj2Lem-zvExJ0n8fmpM7cSiJd/view?usp=sharing">
+          <div className="flex mt-4 gap-5">
+            <Link href="https://drive.google.com/file/d/180DChGiKj2Lem-zvExJ0n8fmpM7cSiJd/view?usp=sharing">
+              <a className="block underline underline-offset-2" target="_blank">
+                Read my CV
+              </a>
+            </Link>
             <a
-              className="block mt-4 underline underline-offset-2"
+              href="mailto:maxime.bounaas@gmail.com"
               target="_blank"
+              className="text-white underline"
             >
-              Read my CV
+              ✉️ Contact me
             </a>
-          </Link>
+          </div>
         </div>
         <Image
           src="/assets/profilPic.jpeg"

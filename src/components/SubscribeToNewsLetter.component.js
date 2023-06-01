@@ -69,9 +69,20 @@ export const SubscribeToNewsLetter = ({ className }) => {
           <h2 className="text-2xl font-medium mb-2">
             Subscribe to my newsletter
           </h2>
-          <p className="text-gray-300 mb-8">
+          <p className="text-gray-300">
             Hear about my latest discoveries and thoughts on tech and digital
-            businesses. Unsub in a click
+            businesses. Unsub in a click.
+          </p>
+          <p className="text-gray-300 mb-8">
+            Or you can contact by email by{' '}
+            <a
+              href="mailto:maxime.bounaas@gmail.com"
+              target="_blank"
+              className="text-white underline"
+            >
+              clicking here
+            </a>
+            .
           </p>
           <div className="flex gap-3 flex-wrap">
             <input
