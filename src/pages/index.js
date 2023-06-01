@@ -19,11 +19,11 @@ export default function Index({
   return (
     <>
       <Head
-        title="Remote React.js / Javascript developer - Freelance - Maxime FERRET"
+        title="React.js / Node.js developer - Maxime FERRET"
         metas={{
           description:
-            'React.js / Next.js developer. I help you build your applications from scratch or help your team from around the world',
-          image: '/assets/profilPic.jpeg'
+            'React.js / Node.js developer. I help you build your applications from scratch or help your team from around the world',
+          image: '/assets/hero_screenshot.png'
         }}
       />
       <HomeHeading />

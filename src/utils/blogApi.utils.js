@@ -38,7 +38,8 @@ export const getPostFromSlug = (slug, object) => {
       title: data.title ?? slug,
       desc: data.desc ?? '',
       image: data.image ?? '',
-      date: (data.date ?? new Date()).toString()
+      date: (data.date ?? new Date()).toString(),
+      keywords: data.keywords ?? ''
     }
   }
 }
