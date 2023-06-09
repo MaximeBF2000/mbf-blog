@@ -1,0 +1,118 @@
+---
+title: 'How to validate user input on your backend with Zod ?'
+desc: 'Learn how to integrate Zod, a TypeScript-first schema validation for your backend'
+date: 2023-06-11
+---
+
+Users' inputs validation has always been extremely important when building any type of service or API.
+
+We know that not doing runtime checks and validation could result in a slower and much less secure application.
+
+When you're starting off with input validation, you probably just add conditionnal statements every where in your code.
+Making your code looking something like this :
+
+```js
+app.post((req, res) => {
+  const body = req.body
+
+  if (!body.email || !body.password) {
+    throw new Error()
+  }
+
+  // Check if input respect the email format
+  if (!isEmail(body.email)) {
+    throw new Error()
+  }
+
+  if (body.password.length < 8 || body.password.length > 30) {
+    throw new Error()
+  }
+
+  doSomething(body)
+})
+```
+
+Doesn't look good, quite painful to develop and maintain right ?
+
+Moreover, if you are using typescript, it should feel a bit counter intuitive to have to make your validation in such a declarative way.
+
+But in fact, Typescript has a blind spot for runtime validation, as it only does build time checks.
+
+Thankfully, there's a solution that will fit way better what you are trying to accomplish.
+
+## What is Zod ?
+
+Presenting Zod, a schema declaration and validation for your backend, that works hand in hand with Typescript to provide runtime validation.
+
+Working with Zod is super easy, you create a schema, then you parse your users' inputs with the schema.
+
+If the inputs does not fit the pattern of the schema, Zod will automatically throw an error that you can catch.
+
+You can infer the type of the schema to statically type with Typescript.
+
+Here's our above example made with Zod :
+
+```ts
+import { z } from 'zod'
+
+const userSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8).max(30)
+})
+
+type User = z.infer<typeof userSchema>
+
+app.post((req, res) => {
+  const body = req.body as User
+
+  // Zod does the checking and validation here
+  userSchema.parse(body)
+
+  doSomething(body)
+})
+```
+
+You can also provide custom error message in your schema :
+
+```ts
+const userSchema = z.object({
+  email: z.string().email(),
+  password: z
+    .string()
+    .min(8, { message: 'Password should be at least 8 characters' })
+    .max(30)
+})
+```
+
+Zod provides a bunch a useful prebuilt validators to check for an email, a url, a uuid, a cuid...
+
+All of those that could be usefull on more complex schemas, for example :
+
+```ts
+const User = z.object({
+  id: z.string().uuid()
+  name: z.string().max(30)
+  websiteUrl: z.string().url()
+  ipAdress: z.string().ip()
+  skills: z.array(z.string()).nonempty()
+
+  // Create enums that you can infer with z.infer, or use z.nativeEnum() for external libs
+  role: z.enum(['visitor', 'admin'])
+
+  // Age must be an positive interger that is less than 100
+  age: z.number().int().positive().lt(100)
+
+  // UTC Format by default
+  createdAt: z.string().datetime()
+})
+```
+
+## The great part of Zod: Infering types
+
+We've seen how usefull a validation library can be, but the real great thing about zod is its `z.infer` method that allows to work with typescript super easily. No need to maintain a relation between your types and schemas, as Zod does it on its own.
+
+## Conclusion
+
+As we've seen, if you are using Typescript for your backend, or even more if you use it accross the frontend and backend of your application, Zod can be a great solution to fill the blindspots of Typescript when it comes to runtime checking.
+
+If you havn't tried it yet, feel free to share with me your first experience with it, I'm sure it will save you time with its great developer experience.
