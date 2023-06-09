@@ -84,6 +84,8 @@ const userSchema = z.object({
 })
 ```
 
+## Using Zod for more advanced schemas
+
 Zod provides a bunch a useful prebuilt validators to check for an email, a url, a uuid, a cuid...
 
 All of those that could be usefull on more complex schemas, for example :
@@ -110,6 +112,12 @@ const User = z.object({
 ## The great part of Zod: Infering types
 
 We've seen how usefull a validation library can be, but the real great thing about zod is its `z.infer` method that allows to work with typescript super easily. No need to maintain a relation between your types and schemas, as Zod does it on its own.
+
+To get the proper type, you simply have to infer the type of your schema:
+
+```ts
+type YourSchemaType = z.infer<typeof yourSchema>
+```
 
 ## Conclusion
 
