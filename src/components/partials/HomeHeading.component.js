@@ -4,7 +4,7 @@ import Link from 'next/link'
 export const HomeHeading = () => {
   return (
     <section>
-      <div className="flex items-center justify-between gap-8 my-16">
+      <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 my-16">
         <div className="content">
           <h1 className="text-5xl font-extrabold mb-2">Maxime FERRET</h1>
           <p className="text-2xl mb-8">Fullstack software engineer</p>
