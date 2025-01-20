@@ -1,0 +1,122 @@
+---
+title: "J'ai analysé + de 50000 offres d'emplois, voilà ce que j'ai trouvé (2025 edition)"
+desc: "Une analyse data approfondie de plus de 50000 offres d'emploi en France pour comprendre les tendances du marché en 2025"
+date: '2025-01-20'
+author: 'Maxime'
+tags: ['Data Analysis', 'Emploi', 'Marché du travail', 'Remote Work']
+---
+
+Avant tout, on peut se demander pourquoi j'ai fait cette analyse.
+
+Le marché de l’emploi évolue, et trop souvent, on a tendance à se fier aux impressions plutôt qu’aux faits.
+
+Cette analyse, c’est une radiographie du marché et de son état.
+
+L'idée, c'est de pouvoir mieux comprendre ce qui se passe vraiment, pour pouvoir mieux agir (que ce soit sur son positionnement, ses compétences, ses formations, etc).
+
+## 👉 Comment j’ai fait ?
+
+Pour cette analyse, j'ai extrait l'intégralité des offres d'emploi actuellement ouvertes sur une grosse plateforme d'offres d'emploi en France.
+
+Puis, j’ai analysé les données en profondeur pour mieux comprendre les tendances du marché : salaires, remote, localisation, expérience requise…
+
+Pour les bidouilleurs ou simplement curieux, j'ai simplement inspecté les requêtes HTTP de la plateforme, puis reproduit ces requêtes avec Python pour récupérer les données, puis un coup de data cleaning et d'analyse avec Pandas + Matplotlib.
+
+## 👉 Ce qui ressort de l'analyse
+
+### Le travail à distance : une réalité contrastée
+
+On est bien redescendu depuis le Covid : <u>seules 1.59% des offres mentionnent explicitement le full remote</u>. Autant dire que le fullremote n'est pas à la mode en ce début 2025 !
+
+La répartition du remote par secteur est intéressante :
+
+**Les champions du remote par secteur :**
+
+1. SaaS / Cloud Services (32.67%)
+2. Logiciels (19.83%)
+3. IT / Digital (10.97%)
+4. Applications mobiles (10.97%)
+5. FinTech / InsurTech (10.72%)
+
+Sans surprise, les secteurs technologiques dominent largement le travail à distance.
+
+<Image
+  src="/assets/articles/analyse-50000-emplois-2025/fullremote_by_sector.png"
+  layout="fill"
+/>
+
+**Les secteurs qui ne sont pas du tout remote-friendly :**
+
+1. Télévision / Production audiovisuelle (0.12%)
+2. Économie collaborative (0.12%)
+3. Art de vivre (0.12%)
+4. Boissons (0.12%)
+5. Automobile (0.12%)
+6. Ferroviaire (0.12%)
+
+### La géographie de l'emploi
+
+<u>
+  Paris maintient sa position avec 20.86% des offres qui mentionnent un bureau
+  dans la ville
+</u>
+, suivi par :
+
+- Lyon (3.24%)
+- Toulouse (2.27%)
+- Nantes (1.95%)
+- Bordeaux (1.93%)
+
+### L'expérience recherchée : un marché ouvert aux juniors
+
+La répartition des années d'expérience requises est particulièrement intéressante :
+
+- 21.88% des offres sont ouvertes aux débutants (0 année) ou ne précisent pas d'expérience requise
+- 19.47% demandent 5 ans d'expérience
+- 14.64% recherchent 2 ans d'expérience
+
+Un point notable : 47.62% des offres ne précisent pas de niveau d'expérience requis, suggérant une possible flexibilité des recruteurs.
+
+<Image
+  src="/assets/articles/analyse-50000-emplois-2025/years_of_experience.png"
+  layout="fill"
+/>
+
+### La transparence salariale : un défi persistant
+
+Un constat frappant : seules 16.44% des offres mentionnent une fourchette de salaire. Cette opacité reste un enjeu majeur du marché du travail français en 2025.
+
+Donc 83.56% des offres qui ne mentionnent pas de salaire.
+
+### Salaire par secteur
+
+Une rapide analyse du top 10 des secteurs qui payent le mieux sur les 16.44% des offres qui mentionnent un salaire :
+
+<Image
+  src="/assets/articles/analyse-50000-emplois-2025/salaries_by_sector.png"
+  layout="fill"
+/>
+
+## Que nous apprend cette analyse ?
+
+1. **L'hybridation du travail** : Malgré l'évolution des pratiques, le full remote reste minoritaire et concentré dans les secteurs tech.
+
+2. **La centralisation persiste** : Paris continue de concentrer une part importante des opportunités, mais les métropoles régionales affirment leur attractivité.
+
+3. **Un marché accessible** : La forte proportion d'offres ouvertes aux débutants (21.88%) suggère un marché dynamique pour les jeunes talents.
+
+4. **Le tabou du salaire** : Avec 83.56% d'offres sans mention de salaire, la France maintient sa tradition de discrétion sur les rémunérations.
+
+## Méthodologie
+
+Cette analyse repose sur le scraping et le traitement de près de 52 000 offres d'emploi. Les données ont été nettoyées et analysées pour extraire les tendances significatives. Bien que basé sur des données relativement à jour (début 2025), l'interprétation des données doit se faire avec prudence.
+
+## 🧠 Ce que ces chiffres nous apprennent :
+
+1️⃣ La transition vers le remote est bien redescendue depuis le Covid.
+
+2️⃣ Paris reste le meilleur endroit pour trouver un emploi.
+
+3️⃣ Si vous êtes dans le SaaS, les opportunités sont nettement plus nombreuses pour travailler à distance.
+
+4️⃣ Le salaire reste un sujet tabou.

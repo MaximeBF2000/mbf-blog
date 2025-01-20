@@ -10,7 +10,7 @@ export const blogComponents = {
   p: props => (
     <p
       {...props}
-      className="!leading-8 text-base sm:text-lg md:text-xl text-gray-300 mb-4"
+      className="!leading-10 text-base sm:text-lg md:text-xl text-gray-300 mb-6"
     />
   ),
   h2: props => (
