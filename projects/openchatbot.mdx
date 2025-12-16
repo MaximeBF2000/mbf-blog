@@ -1,0 +1,106 @@
+---
+title: 'Open Chatbot'
+desc: 'A local-first AI chatbot desktop app. 100% open-weight AI models, privacy-first, with web search and MCP tool calling.'
+date: 2025-08-10
+---
+
+<Image src="/assets/projects/openchatbot/app.png" layout="fill" />
+
+## Why Build Another Chatbot?
+
+ChatGPT, Claude, and other AI assistants are incredible, but they come with trade-offs: your data goes to the cloud, you need an account, and you're locked into their ecosystem. What if you want to use open-source models? What if you want your conversations to stay completely private? What if you want to integrate with your own tools?
+
+I wanted a chatbot that gives me control: over the AI model, over my data, and over the features.
+
+## Local-First, Privacy-First
+
+OpenChatbot is built on a simple principle: everything runs locally. No cloud, no accounts, no data leaving your machine.
+
+Your conversations are stored as JSON files on your computer. The AI models run locally (via Ollama). Even web search goes through SearXNG, a privacy-respecting metasearch engine that doesn't track you.
+
+This isn't just about privacy—it's about freedom. You own your data, you choose your models, and you're not dependent on any service.
+
+## 100% Open-Weight AI
+
+One of the key differentiators is that OpenChatbot is designed to work exclusively with open-weight AI models. No proprietary APIs, no vendor lock-in.
+
+I integrated with Ollama, which makes it easy to run models like Llama, Mistral, or any other open model locally. We use the MCP protocol to interact with the models, and Whisper for audio to text.
+
+## Features That Matter
+
+### Multiple Conversations
+
+Create and manage multiple chat conversations. Each conversation is stored separately, making it easy to organize different topics or projects.
+
+### Chat Memory
+
+Conversations persist locally. Close the app, come back later, and your chat history is still there. No cloud sync needed, no account required.
+
+### Edit & Regenerate
+
+Made a typo in your message? Want to see a different response? Edit previous messages or regenerate AI responses with a single click.
+
+### Web Search Integration
+
+The chatbot can search the web using SearXNG, a privacy-respecting metasearch engine. Ask questions that require current information, and the AI will search, read results, and provide answers based on real web content.
+
+### MCP Tool Calling
+
+The app supports Model Context Protocol (MCP) tool calling, allowing the AI to interact with external tools and services. This opens up endless possibilities for extending functionality.
+
+### Speech-to-Text
+
+A microphone icon in the input field enables speech-to-text functionality, making it easy to have voice conversations with your AI assistant.
+
+## SMS-Inspired Design
+
+I wanted the app to feel premium, not just functional. The UI takes inspiration from classic SMS chat interfaces: familiar, streamlined, and focused on the conversation.
+
+The sidebar organizes your different chats like message threads, and the main chat area mimics the clear, legible layout of a modern texting app—making interactions feel natural and intuitive.
+
+## Built With Modern Tech
+
+**Electron** for cross-platform desktop support  
+**React + TypeScript** for a type-safe, maintainable UI  
+**Vite** for fast development and builds  
+**Node.js** for backend operations  
+**LangChain 1.0** for AI orchestration, tool calling, and prompt management
+
+The architecture separates concerns cleanly: the Electron main process handles file operations and AI integration, while the React renderer process manages the UI and user interactions.
+
+LangChain 1.0 is the backbone of the AI functionality. It handles the complex orchestration between the AI model, tools, and prompt templates, making it possible to build sophisticated features like web search and custom instructions without reinventing the wheel.
+
+## The Technical Challenge: Tool Calling
+
+One of the most interesting parts of building this was implementing tool calling. The AI needs to be able to:
+
+1. Decide when to use a tool (like web search)
+2. Call the tool with the right parameters
+3. Parse the tool's response
+4. Continue the conversation with that context
+
+LangChain 1.0 makes this possible. Its tool calling framework abstracts away the complexity of different model formats, allowing the app to work seamlessly with various open-weight models. Whether you're using Llama, Mistral, or any other model, LangChain handles the tool invocation, parameter extraction, and response integration.
+
+The MCP (Model Context Protocol) integration works hand-in-hand with LangChain's tool system, enabling the AI to interact with external services and tools in a standardized way.
+
+## Prompt Engineering: The Foundation
+
+Under the hood, OpenChatbot relies on prompt engineering to make features like custom instructions and web search work.
+
+**Custom Instructions** are implemented through system prompts that get prepended to every conversation. These prompts guide the AI's behavior, personality, and response style. Want your AI to be more technical? More casual? Speak in a specific language? It's all handled through prompt templates that LangChain manages.
+
+**Web Search** is also where prompt engineering is a must. The AI needs to:
+
+- Understand when a query requires current information
+- Formulate an effective search query
+- Parse and synthesize search results into a coherent answer
+
+This is achieved through a multi-step prompt chain: first, the AI decides if web search is needed, then it generates the search query, and finally, it synthesizes the results into a natural response. LangChain's prompt templates and chains make this orchestration manageable, even when working with models that don't have native tool calling support.
+
+The beauty of this approach is that it's model-agnostic. Whether you're using a model with native tool calling or one that needs more guidance through prompts, LangChain handles the complexity.
+
+## Why Open Source?
+
+I open-sourced this project because I believe in the importance of local AI. As open-weight models get better and more accessible, tools like this become essential for people who want control over their AI interactions.
+
+The codebase is clean, well-structured, and easy to extend. Want to add a new tool? Integrate a different AI provider? Customize the UI? It's all possible.

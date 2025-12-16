@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useSearch } from 'src/utils/useSearch.hook'
 import { Paginate } from '../Paginate.component'
 import { ProjectItem } from '../ProjectItem.component'

@@ -13,10 +13,13 @@ export const HomeHeading = () => {
             React ⚛️ Node ✨
           </p>
           <div className="flex mt-4 gap-5">
-            <Link href="https://drive.google.com/file/d/180DChGiKj2Lem-zvExJ0n8fmpM7cSiJd/view?usp=sharing">
-              <a className="block underline underline-offset-2" target="_blank">
+            <Link
+              href="https://drive.google.com/file/d/180DChGiKj2Lem-zvExJ0n8fmpM7cSiJd/view?usp=sharing"
+              className="block underline underline-offset-2"
+              target="_blank">
+              
                 Read my CV
-              </a>
+              
             </Link>
             <a
               href="mailto:maxime.bounaas@gmail.com"
@@ -36,5 +39,5 @@ export const HomeHeading = () => {
         />
       </div>
     </section>
-  )
+  );
 }

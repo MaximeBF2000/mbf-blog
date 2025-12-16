@@ -1,0 +1,111 @@
+---
+title: 'Super Simple Analytics'
+desc: 'A privacy-first, self-hosted analytics solution. Ultra-simple setup, no cookies, your data stays yours.'
+date: 2025-10-20
+---
+
+<Image
+  src="/assets/projects/super-simple-analytics/dashboard.png"
+  layout="fill"
+/>
+
+## Why Build Yet Another Analytics Tool?
+
+Google Analytics is powerful, but it's also bloated, privacy-invasive, and increasingly complex. For my small projects, I didn't need conversion funnels, user segments, or AI-powered insights. I just wanted to know: how many people visit my site, where do they come from, and which pages are popular?
+
+I also wanted full control over my data. No third-party tracking, no data sharing, no GDPR headaches. Just simple, honest analytics that respect user privacy.
+
+## The Philosophy: Less is More
+
+SuperSimpleAnalytics is built on a few core principles:
+
+- **Ultra-simple setup**: Clone, configure, run. No Kubernetes, no Redis, no complex infrastructure.
+- **Privacy-first**: No cookies required, no PII collected, IP addresses are hashed immediately with SHA256.
+- **Self-hosted**: Your data stays on your server. Period.
+- **Minimalist**: Focus on essential metrics. No feature bloat, no overwhelming dashboards.
+- **Lightweight**: SQLite database, minimal dependencies, runs on modest hardware.
+
+## Perfect for Small Projects
+
+The key insight here is that most side projects, landing pages, and personal blogs don't need enterprise-grade analytics. They need something that:
+
+- Takes 5 minutes to deploy
+- Doesn't require a managed database
+- Works with a simple VPS or even a Raspberry Pi
+- Handles tens to hundreds of thousands of events without breaking a sweat
+
+SQLite is the secret weapon here. No database server to manage, just a single file. Perfect for the scale of most indie projects.
+
+## What You Get
+
+### Clean Dashboard
+
+The dashboard shows you what matters:
+
+- **Page views, sessions, unique visitors** — the basics, front and center
+- **Traffic over time** — hourly or daily trends
+- **Top pages** — which content resonates
+- **Top referrers** — where your traffic comes from
+- **Device, OS & browser breakdowns** — understand your audience
+
+### Interactive Map
+
+A world map visualization showing where your visitors are located. Each pageview with location data appears as a marker you can click for details.
+
+### Complete Event Log
+
+Browse all pageviews with full details. Filter by date range, device type, OS, location, or visitor ID. Paginated for large datasets.
+
+### Multi-Site Support
+
+Track multiple sites from a single dashboard. Each site gets its own tracking ID and isolated data.
+
+## The Tech Stack
+
+I kept it simple and modern:
+
+**Backend:**
+
+- Node.js + Express.js
+- SQLite (file-based, zero config)
+- JWT authentication
+- GeoIP for location data
+
+**Frontend:**
+
+- React 19 + Vite
+- TailwindCSS
+- Recharts for charts
+- Leaflet for maps
+- React Query for data fetching
+
+## Integration: One Script Tag
+
+Adding tracking to your site is as simple as:
+
+```html
+<script
+  src="https://your-analytics.com/tracker.js"
+  data-tracking-id="site_ABC123"
+  defer
+></script>
+```
+
+That's it. No npm packages, no build steps, no configuration. Just a script tag and you're done.
+
+## Privacy Without Compromise
+
+In an era where privacy regulations are getting stricter and users are more conscious about tracking, SuperSimpleAnalytics takes a different approach:
+
+- **No cookies**: Uses localStorage only, making it GDPR-friendly by default
+- **IP hashing**: IP addresses are hashed immediately and never stored in clear text
+- **No PII**: No email, no name, no fingerprinting
+- **Self-hosted**: You control where the data lives
+
+## The Right Tool for the Right Job
+
+SuperSimpleAnalytics isn't trying to compete with Google Analytics or Amplitude. It's not for teams running A/B tests or optimizing conversion funnels.
+
+It's for developers who want to know if anyone is using their side project, bloggers who want to see which posts resonate, and indie makers who value privacy and simplicity over feature lists.
+
+Sometimes, simple is exactly what you need.

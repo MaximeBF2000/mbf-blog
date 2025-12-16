@@ -1,0 +1,121 @@
+---
+title: 'Mailsheet'
+desc: 'Automate email prospecting from Google Sheets. Import your spreadsheet, write personalized emails with variables, send automatically.'
+date: 2025-07-20
+---
+
+<Image src="/assets/projects/mailsheet/landing_hero.png" layout="fill" />
+
+## The Problem: Email Prospecting is Tedious
+
+As a freelancer and indie maker, I do a lot of prospecting. Finding potential clients, researching their needs, crafting personalized emails... It's time-consuming, but it's also essential for growing your business.
+
+The workflow was always the same:
+
+1. Build a list of prospects in a Google Sheet
+2. Write personalized emails (or try to)
+3. Copy-paste each email into Gmail
+4. Send manually, one by one
+5. Track who responded, who didn't
+
+This process was killing my productivity. I'd spend hours just copying and pasting, and the personalization was limited because I couldn't efficiently use data from my spreadsheet.
+
+## The Solution: Connect Spreadsheets to Email
+
+What if you could write your email once, use variables from your spreadsheet, and let the app handle the rest?
+
+That's Mailsheet. The concept is beautifully simple:
+
+1. **Import your Google Sheet** — Just paste the public URL
+2. **Write your email** — Use `{variable}` syntax to pull data from your spreadsheet
+3. **Send automatically** — The app handles progressive sending, rate limiting, and tracking
+
+No complex setup, no API integrations, no CSV exports. Just your spreadsheet and your Gmail account.
+
+## How It Works
+
+### Import Your Spreadsheet
+
+The only requirement is that your Google Sheet is public and has an "email" column. Paste the URL, click "Load Sheet," and Mailsheet reads all your data.
+
+This means you can have columns like:
+
+- `email`
+- `name`
+- `company`
+- `location`
+- `industry`
+- `custom_field_1`
+- Anything else you want
+
+### Write with Variables
+
+In your email subject and body, use `{variable}` syntax to pull data from your spreadsheet:
+
+```
+Subject: Quick question about {company}
+
+Hi {name},
+
+I noticed {company} is in the {industry} space. I've been helping similar companies with...
+
+Best,
+Maxime
+```
+
+When sending, Mailsheet replaces each `{variable}` with the actual value from that row. Each email is personalized automatically.
+
+### Progressive Sending
+
+The app doesn't blast all emails at once. It sends them progressively with rate limiting to avoid spam filters and respect email best practices. You can track progress, see who received emails, and manage campaigns all in one place.
+
+## Why Google Sheets?
+
+I chose Google Sheets as the data source because:
+
+- **Everyone uses it**: Most people already have their prospect lists in spreadsheets
+- **Easy to share**: Public URLs make integration trivial
+- **No API complexity**: No OAuth, no API keys, no complex setup
+- **Familiar format**: People understand spreadsheets
+- **Easy to use**: This is what I use daily, so it's the most natural way to import my data
+
+The trade-off is that sheets need to be public, but for prospecting lists, that's usually fine. The convenience outweighs the limitation.
+
+## Single Email vs Campaigns
+
+Mailsheet supports two modes:
+
+**Single Email**: Perfect for quick sends to a small list. Write your email, hit send, done.
+
+**Campaigns**: For larger lists and more complex workflows. Schedule sends, track opens, manage follow-ups.
+
+## The Technical Stack
+
+Built as a web app for maximum accessibility:
+
+- **Frontend**: React for the UI
+- **Backend**: Next.js API routes for email handling
+- **Email**: Integrated with Gmail API for sending
+
+The architecture is straightforward: read the spreadsheet, parse variables, send emails through Gmail, track everything.
+
+## Privacy & Security
+
+Since sheets need to be public, Mailsheet doesn't store your spreadsheet data permanently. It reads it once, processes the emails, and sends them. Your email credentials are handled securely through OAuth, and the app only requests the minimum permissions needed to send emails.
+
+## A Tool That Saves Hours
+
+Before Mailsheet, sending 50 personalized prospecting emails would take me 2-3 hours. Now it takes 10 minutes: import the sheet, write the email template, hit send.
+
+The time saved isn't just about automation—it's about being able to personalize at scale. Instead of generic "Hi there" emails, I can reference specific companies, locations, or industries pulled directly from my spreadsheet.
+
+## Built for Indie Makers
+
+Mailsheet isn't trying to compete with Mailchimp or SendGrid. It's for freelancers, indie makers, and small teams who want to:
+
+- Prospect efficiently without complex tools
+- Personalize emails using spreadsheet data
+- Keep their workflow simple and straightforward
+- Avoid monthly subscriptions for features they don't need
+
+Sometimes the best tools are the simplest ones—and the ones that fit your existing workflow.

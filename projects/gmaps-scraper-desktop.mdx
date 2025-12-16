@@ -1,0 +1,93 @@
+---
+title: 'Google Maps Scraper Desktop'
+desc: 'An Electron app to search and extract prospects from Google Maps. Fast, clean, and uses reverse-engineered Google Maps API.'
+date: 2025-09-15
+---
+
+<Image src="/assets/projects/gmaps-scraper-desktop/app.png" layout="fill" />
+
+## Discovering Google Maps as a Goldmine
+
+A few years ago, I discovered something that changed how I approach prospecting: Google Maps is an incredible source of leads. Whether you're looking for freelance clients or potential users for your apps, businesses are right there, with their contact info, ratings, and websites all in one place.
+
+The catch? Nearly all tools that handle this automatically are pricey SaaS options. I prefered to build my own solution and learn about the API rather than pay a monthly fee for something where it didn't make sense.
+
+## First Attempt: The Chrome Extension
+
+My first solution was a Chrome extension that worked directly on Google Maps. The idea was simple: automate scrolling, extract the data from the DOM, and export it.
+
+It worked, but it had major flaws:
+
+- **Slow extraction**: Scrolling through pages manually, waiting for content to load, parsing the DOM... It was tedious and time-consuming.
+- **Poor UX**: The extension UI felt clunky, and the whole process felt like a hack.
+- **Fragile**: Any change to Google Maps' HTML structure could break the scraper.
+
+I needed something better.
+
+## The Desktop App Solution
+
+Enter the desktop application. This time, I took a completely different approach: reverse engineer Google Maps' internal API.
+
+Instead of scraping the rendered HTML, the app makes direct API calls to Google Maps' backend. This means:
+
+- **Near-instant results**: No waiting for pages to load or scrolling through content
+- **Clean interface**: A proper desktop app with a modern React UI
+- **More reliable**: API endpoints are more stable than HTML structure
+- **Better behavior**: Running as a desktop app, it uses your local IP address, making requests look exactly like normal Google Maps searches
+
+## How It Works
+
+The app lets you:
+
+1. **Search**: Enter a query (like "Web dev agency") and a location (like "San Francisco")
+2. **Review**: Browse results in a clean table showing name, address, phone, rating, reviews, and website
+3. **Export**: One click to export everything to CSV
+
+You can control how many pages to scrape (each page contains up to 20 results), and the data extraction happens almost instantly.
+
+## The Technical Challenge: Reverse Engineering
+
+The interesting part of this project was figuring out how Google Maps' internal API works. It's not well documented, so I had to:
+
+- Inspect network requests when using Google Maps in a browser
+- Understand the API endpoints and their parameters
+- Replicate the authentication and request format
+- Handle pagination and result parsing
+
+It's a cat-and-mouse game, but once you understand the pattern, it's surprisingly straightforward.
+
+## Built With Electron + React
+
+I chose Electron because:
+
+- **Cross-platform**: Works on Windows, macOS, and Linux
+- **Native feel**: Feels like a real desktop app, not a web page in a box
+- **Full control**: Can make direct API calls without CORS issues
+- **Easy distribution**: Package it once, distribute everywhere
+
+The frontend is React with a clean, modern UI. The app feels fast and responsive, which was a key goal after the slow Chrome extension experience.
+
+## Use Cases
+
+I built this primarily for my own prospecting needs:
+
+- **Freelance prospecting**: Finding potential clients in specific industries and locations
+- **App marketing**: Identifying businesses that might benefit from my SaaS products
+- **Market research**: Understanding the competitive landscape in different areas
+
+The CSV export makes it easy to import data into CRM tools, spreadsheets, or any other system you use for follow-up.
+
+## Why Desktop Over Web?
+
+The desktop approach has several advantages:
+
+- **IP address**: Uses your local IP, so requests look natural to Google
+- **No browser limitations**: No CORS, no extension permissions, no browser-specific quirks
+- **Better performance**: Direct API calls are faster than DOM manipulation
+- **Offline capability**: Once you understand the API, you could potentially cache results
+
+## A Tool That Pays for Itself
+
+This is one of those tools that saved me hours. Instead of manually browsing Google Maps or paying for a SaaS subscription, I have a free, fast, and reliable solution that does exactly what I need.
+
+Sometimes the best tools are the ones you build for yourself.

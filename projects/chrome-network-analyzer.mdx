@@ -1,0 +1,85 @@
+---
+title: 'Chrome Network Analyzer'
+desc: 'A powerful Chrome extension for analyzing network traffic with advanced filtering, search capabilities, and LLM-friendly export'
+date: 2025-11-01
+---
+
+<Image
+  src="/assets/projects/chrome-network-analyzer/extension.png"
+  layout="fill"
+/>
+
+## The Origin: A Tool Born from Frustration
+
+While working on [Prospease](/projects/prospease), my LinkedIn automation Chrome extension, I spent countless hours doing reverse engineering. Understanding how LinkedIn's API worked, what endpoints were being called, what data was being sent and received... This was essential to build a reliable automation tool.
+
+The problem? Chrome's native Network tab in DevTools, while useful, was missing some key features that would have made my life so much easier:
+
+- **No regex search** across URLs, headers, and bodies
+- **No easy way to search inside response bodies**
+- **No direct export to LLM-friendly format** for quick AI analysis
+- **Limited filtering options** that required too many clicks
+
+I found myself constantly copying requests, formatting them manually, and pasting them into ChatGPT to help me understand complex API responses. There had to be a better way.
+
+## Building My Own Tool
+
+As most developers do when they can't find the perfect tool, I decided to build my own.
+
+### The Core Requirements
+
+What I needed was simple but powerful:
+
+- **Capture all network requests** in real-time (XHR, Fetch, documents, scripts...)
+- **Advanced filtering** by HTTP method, status code, resource type, and URL patterns
+- **Regex-powered search** across URLs, headers, and request/response bodies
+- **In-response search** with match highlighting and navigation
+- **One-click export** to cURL, JavaScript Fetch, and Python requests
+- **LLM Details tab** with formatted output ready for AI analysis
+
+### Technical Implementation
+
+I built the extension using Chrome Extension Manifest V3, with a service worker handling the network capture and a DevTools panel for the UI. The architecture involves:
+
+- `chrome.webRequest` API to intercept requests at multiple stages
+- `chrome.devtools.network` API to capture response bodies
+- Real-time messaging between the background script and DevTools panel
+
+One interesting challenge was capturing request bodies. The `webRequest` API captures data at different stages (onBeforeRequest, onBeforeSendHeaders, onHeadersReceived, onCompleted), and I had to piece together the full picture of each request across these events.
+
+## The Features That Save Me Hours
+
+### Regex Search Everywhere
+
+The killer feature for me is the ability to search with regex patterns across everything. Looking for all requests containing a specific user ID in the body? Done. Finding all endpoints matching a pattern? Easy. This alone probably saves me 30 minutes per reverse engineering session.
+
+### LLM-Friendly Export
+
+This was the feature I was most excited about. With one click, I can copy a beautifully formatted version of any request/response pair, optimized for pasting into ChatGPT or Claude. No more manual formatting, no more missing context.
+
+### Keyboard Shortcuts
+
+Because efficiency matters:
+
+- `/` to focus the search input
+- `Esc` to clear all filters
+- `Tab` to navigate between matches in response body
+- `Ctrl/Cmd + F` to search within a response
+
+### Dark Mode
+
+Because no developer tool is complete without it. 🌙
+
+## What I Learned
+
+Building a DevTools extension is quite different from a regular Chrome extension. The DevTools API has its own quirks and limitations. Here are some takeaways:
+
+- **Response bodies are tricky**: Due to CORS restrictions and binary content, some response bodies simply aren't available. I had to handle these edge cases gracefully.
+- **Performance matters**: When you're capturing 1000+ requests on a busy page, you need to be careful about memory and rendering performance.
+- **Manifest V3 changes everything**: The move from background pages to service workers required a different approach to persistent state management.
+
+## The Tool I Wish I Had Earlier
+
+This extension has become an essential part of my development toolkit. Whether I'm reverse engineering an API, debugging a tricky network issue, or just trying to understand how a web app works under the hood, Network Analyzer is always open in my DevTools.
+
+It's a tool I built for myself, but it's also a reminder that sometimes the best projects come from scratching your own itch. If you're doing any kind of web reverse engineering or API debugging, give it a try.
