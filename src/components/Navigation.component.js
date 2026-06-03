@@ -15,8 +15,8 @@ export const Navigation = ({ currentPath }) => {
         <Link href="/">
           <li className={linkClass(currentPath, '/')}>Home</li>
         </Link>
-        <Link href="/blog">
-          <li className={linkClass(currentPath, '/blog')}>Blog</li>
+        <Link href="/articles">
+          <li className={linkClass(currentPath, '/articles')}>Blog</li>
         </Link>
         <Link href="/projects">
           <li className={linkClass(currentPath, '/projects')}>Projects</li>

@@ -30,7 +30,7 @@ export function ArticlesList({
         layout={({ children }) => <ul>{children}</ul>}
         renderItem={post => (
           <li className="mb-12 last:mb-0" key={post.slug}>
-            <Link href={`/blog/${post.slug}`}>
+            <Link href={`/articles/${post.slug}`}>
               <h3 className="cursor-pointer text-gray-100 text-3xl mb-1 hover:underline focus:underline underline-offset-4">
                 {post.title}
               </h3>
@@ -47,7 +47,7 @@ export function ArticlesList({
           </p>
         )}
       />
-      {hasMorePosts && <Link href="/blog">See more posts</Link>}
+      {hasMorePosts && <Link href="/articles">See more posts</Link>}
     </section>
   )
 }
