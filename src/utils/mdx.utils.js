@@ -7,6 +7,8 @@ import { getPostFromSlug } from './blogApi.utils'
 export const getMdx = async (slug, object) => {
   const { content, meta } = getPostFromSlug(slug, object)
   const mdxSource = await serialize(content, {
+    blockJS: false,
+    blockDangerousJS: true,
     mdxOptions: {
       rehypePlugins: [rehypeSlug, rehypeHighlight]
     }
