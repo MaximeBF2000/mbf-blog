@@ -1,0 +1,83 @@
+---
+title: 'Mini Mailer'
+desc: 'A simple Electron desktop app to automate bulk email sending from spreadsheets using Nodemailer'
+date: 2025-10-01
+---
+
+<Image src="/assets/projects/minimailer/app.png" layout="fill" />
+
+## The Problem: Email Prospecting Made Simple
+
+As a freelancer, prospecting is part of the game. You find leads, you reach out, you follow up. But when you're dealing with dozens or hundreds of potential clients, sending personalized emails one by one becomes a real time sink.
+
+I had already built [Google Maps Scraper Desktop](/projects/gmaps-scraper-desktop) to help me find prospects on Google Maps efficiently. But once I had my list of leads in a spreadsheet, I still had to manually craft and send each email. There had to be a better way.
+
+## The Solution: Keep It Simple
+
+I didn't need a complex email marketing platform with analytics, A/B testing, and all the bells and whistles. I just needed something that would:
+
+- Read contacts from a spreadsheet (Google Sheets or CSV)
+- Send emails with personalized variables
+- Work reliably without breaking the bank (those tools are expensive)
+
+So I built Mini Mailer: a simple Electron desktop app that does exactly that, nothing more, nothing less.
+
+## How It Works
+
+The concept is straightforward:
+
+1. **Connect your email account**: Configure your SMTP settings
+2. **Load your contacts**: Import from Google Sheets or upload a CSV file
+3. **Write your template**: Create your email with variables like `{name}`, `{company}`, or any column from your spreadsheet
+4. **Send**: Hit send and let the app handle the rest
+
+The app sends emails one by one, respecting rate limits to avoid being flagged as spam. You can see the progress in real-time, and it keeps track of which emails were sent successfully.
+
+## The Power of Variables
+
+The real time-saver here is the variable system. Instead of writing "Hi John" manually for each email, you write "Hi \{name\}" once, and the app replaces it with the actual name from your spreadsheet.
+
+You can use any column from your spreadsheet as a variable. Found a company name? Use `{company}`. Have a specific detail about each lead? Add it as a column and reference it with `{custom_field}`.
+
+This means you can write one email template that feels personal to each recipient, without the manual work.
+
+## Built With Electron + Nodemailer
+
+I chose Electron for the same reasons as my other desktop tools:
+
+- **Cross-platform**: Works everywhere
+- **No server needed**: Everything runs locally on your machine
+- **Full control**: Direct SMTP access without API limitations
+
+Nodemailer handles all the email sending logic. It's a battle-tested library that supports all major email providers and handles authentication, encoding, and attachments seamlessly.
+
+## Why Desktop Over Web?
+
+For email sending, a desktop app makes sense:
+
+- **Privacy**: Your email credentials stay on your machine, not on a server
+- **No API costs**: Direct SMTP access means no per-email fees
+- **Reliability**: No dependency on a third-party service that could go down
+- **Simplicity**: Just install and use, no account creation, no subscription
+
+## A Tool That Does One Thing Well
+
+Mini Mailer is intentionally minimal. It doesn't try to be a full email marketing suite. It doesn't have fancy analytics or campaign management. It just sends emails from spreadsheets, reliably and simply.
+
+This focus on simplicity means:
+
+- **Fast to set up**: You can be sending emails in minutes
+- **Easy to understand**: No learning curve, no complex features to navigate
+- **Reliable**: Less code means fewer bugs, fewer things that can break
+
+## Perfect Pair: Scraper + Mailer
+
+The real power comes from combining tools. I use [Google Maps Scraper Desktop](/projects/gmaps-scraper-desktop) to find prospects, export them to CSV, then import that CSV into Mini Mailer to send personalized outreach emails.
+
+This workflow has saved me countless hours. What used to take an entire day of manual work now takes minutes.
+
+## Built for Myself, Useful for Others
+
+I built Mini Mailer to solve my own problem, but it's a reminder that sometimes the best tools are the simplest ones. When you focus on doing one thing really well, you end up with something that's both powerful and easy to use.
+
+If you're doing any kind of bulk email outreach—whether it's prospecting, follow-ups, or personalized communications—sometimes all you need is a simple tool that gets out of your way and just works.

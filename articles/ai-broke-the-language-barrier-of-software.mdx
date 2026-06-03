@@ -1,0 +1,354 @@
+---
+title: 'AI Broke The Language Barrier Of Software'
+desc: 'Sharing my thoughts on the impact of AI on the software industry, and what it means moving forward'
+date: 2026-06-03
+---
+
+I recently went back on the job market.
+
+After spending months building products with AI, I recently started looking at software engineering job listings again.
+
+Something immediately stood up to me, and it felt strange.
+
+I saw job offers for:
+
+- Senior Rust Engineer
+- Senior React Engineer
+- Senior Python Engineer
+- Senior Go Engineer
+
+I was confused.
+
+Ten years ago, this made perfect sense.
+
+Today, I'm not so sure.
+
+Because over the past year, I've been building products using technologies I had little to no prior experience with, and for the first time, I felt like the tool itself wasn't the limiting factor anymore.
+
+The limiting factor was understanding the system.
+
+And that's what got me thinking: Has AI finally completely broken the language barrier of software engineering ?
+
+## The real skill was never syntax
+
+For most of software history, your ability to build something was heavily tied to the languages and frameworks you knew.
+
+Learning a new ecosystem was expensive.
+
+Not because the ideas were different.
+
+But because the syntax was.
+
+The best engineers I've worked with were rarely valuable because they knew some obscure framework API by heart.
+
+They were valuable because they understood:
+
+- Product design
+- System architecture
+- Trade-offs
+- Scalability
+- Reliability
+- Debugging
+- How software evolves over time
+
+Languages were simply the medium through which those skills were expressed.
+
+AI is changing that relationship.
+
+## Programming languages have become translatable
+
+The biggest shift isn't that AI writes code.
+
+The biggest shift is that AI translates expertise.
+
+Today I can describe a system, an architecture, or a product requirement and have it implemented in technologies I've never spent years mastering.
+
+The knowledge transfers.
+
+Patterns learned in Python can become Rust.
+
+Patterns learned in React can become Vue.
+
+Backend experience can be translated into desktop applications.
+
+Infrastructure knowledge can be translated into entirely different ecosystems.
+
+The implementation language increasingly feels like an implementation detail.
+
+Just like Google Translate lowered the cost of communicating between human languages, modern coding models are lowering the cost of communicating between technical ecosystems.
+
+## My experience building with unkown technologies
+
+The strongest evidence I have isn't theoretical.
+
+It's tools I've been building with an agentic approach.
+
+An example : A local-first macOS AI assistant built as a mix between Claude Code and OpenClaw.
+
+The stack includes technologies I had little prior experience with:
+
+- Rust
+- Tauri
+- Nuxt
+- FastAPI
+
+This isn't a toy project.
+
+The product includes:
+
+- AI agents that can interact with the user's computer
+- Sandboxed execution environments
+- Permission management
+- Long-term memory systems
+- Agentic loops
+- Multiple third-party integrations
+- Native macOS functionality
+
+A few years ago, I would have considered this stack a significant barrier.
+
+Today, AI acts as a translator between what I want to build and the technologies required to build it.
+
+I don't need to become a world-class Rust engineer before I can ship meaningful functionality in Rust.
+
+I need to understand the system I'm trying to build.
+
+The language follows.
+
+<Image
+  src="/assets/articles/ai-broke-the-language-barrier-of-software/nexus-chat.png"
+  layout="fill"
+/>
+
+## Another example: Momentum
+
+I've experienced the same thing on other projects.
+
+Like Momentum, a local-first (yes, I like local software) macOS screen recording tool I've been building, that goes deep in Rust and Tauri features, with complex audio/video capture and processing.
+
+Yet the experience was similar.
+
+The bottleneck wasn't writing code.
+
+The bottleneck was product designing the product, and architect things.
+
+The actual implementation became the easiest part of the process.
+
+Which raises an uncomfortable question:
+
+If implementation becomes progressively cheaper, where does engineering value move ?
+
+<Image
+  src="/assets/articles/ai-broke-the-language-barrier-of-software/momentum-capture.png"
+  layout="fill"
+/>
+
+## The fear of AI-generated code
+
+Whenever I discuss this idea, I hear the same objection: "AI-generated code is garbage."
+
+Okay. Sometimes it can be.
+
+But I think people are often diagnosing the wrong problem.
+
+Most poor AI-generated code comes from one of two places.
+
+### Old models
+
+A lot of people formed their opinion of AI coding tools one or two years ago.
+
+That landscape no longer exists.
+
+Modern frontier coding models routinely produce code that is significantly better than what an average developer would write.
+
+Not always.
+
+Not perfectly.
+
+But often enough that the assumption of "AI code equals bad code" no longer matches reality.
+
+### Bad context produces bad code
+
+This is a big one.
+
+AI inherits its environment.
+
+A codebase full of inconsistent patterns / technical debt / poor architecture / weak documentation will generate worse outputs.
+
+The model isn't creating the mess.
+
+It's amplifying it.
+
+Humans behave exactly the same way.
+
+## Maybe we're optimizing for the wrong thing
+
+Many criticisms of AI-generated code assume that developers will continue working exactly as they do today.
+
+Reading every file.
+
+Understanding every implementation detail.
+
+Reviewing every line.
+
+I'm not convinced that's where we're heading.
+
+Software engineering has always moved toward higher levels of abstraction.
+
+Machine code became assembly.
+
+Assembly became C.
+
+Infrastructure became cloud services.
+
+Cloud services became serverless abstractions.
+
+AI feels like the next step.
+
+The future might not be humans writing code with AI assistance.
+
+In my opinion, it's more likely to be humans designing systems while AI handles implementation.
+
+The primary artifact becomes architecture.
+
+Not syntax.
+
+## Documentation becomes more important than code
+
+One thing I've noticed while building with AI is that project documentation becomes dramatically more important, both for agents and humans.
+
+Files like `AGENTS.md` often have more impact than individual source files.
+
+They encode architectural principles, product goals, coding standards, system constraints, and decision-making frameworks.
+
+The AI uses this information to make thousands of implementation decisions.
+
+And the more detailed the documentation, the better the AI can understand the system and the more accurate the implementation will be.
+
+A good `AGENTS.md` can improve a codebase more than rewriting hundreds of lines of code.
+
+Ironically, AI-assisted projects may end up being better documented than traditional projects because documentation directly improves development velocity.
+
+## Debugging starts looking like conversation
+
+The same applies to maintenance.
+
+Historically debugging meant:
+
+- finding files
+- tracing execution
+- reading logs
+- manually testing hypotheses
+
+Increasingly it looks like this:
+
+> "The recording freezes when users switch audio devices during capture. Investigate."
+
+The AI explores the codebase.
+
+Runs tests.
+
+Reads logs.
+
+Proposes explanations.
+
+Suggests fixes.
+
+Documents findings.
+
+The interaction layer becomes natural language.
+
+The code still exists.
+
+But fewer people need to interact with it directly.
+
+## What this means for junior engineers
+
+If I were starting my career today, I would spend less time obsessing over which framework to learn.
+
+And more time understanding software itself.
+
+Learn:
+
+- system design
+- architecture
+- databases
+- networking
+- testing
+- distributed systems
+- product thinking
+
+These skills compound across every technology stack.
+
+That said, I still believe there is tremendous value in going deep.
+
+Pick one language.
+
+Pick one framework.
+
+Master it.
+
+Not because you'll spend your career there.
+
+But because everything you learn transfers.
+
+Once you've deeply understood one ecosystem, AI makes it dramatically easier to apply those lessons elsewhere.
+
+The goal is no longer to become a React developer.
+
+Or a Rust developer.
+
+Or a Python developer.
+
+The goal is to become a software engineer whose knowledge transcends the implementation language.
+
+## The job market hasn't caught up yet
+
+This brings me back to where this article started.
+
+There is a gap between this new way of building software, and how big companies think about it right now.
+
+The market still largely hires for implementation technologies.
+
+Ironically, it could both be an obstacle or an advantage.
+
+As a junior, you might want to position yourself on lower-level, "less sexy" technologies while this gap is still here.
+
+Anyway, as a manager if you are still asking for syntax specific skills, you might want to ask yourself if this is really relevant for the way your engineers will work.
+
+The language matters.
+
+But its now English.
+
+## Conclusion
+
+The biggest impact of AI on software development isn't code generation.
+
+It's translation.
+
+For the first time, the gap between understanding a system and implementing that system is shrinking dramatically.
+
+Programming languages are not disappearing.
+
+Frameworks are not disappearing.
+
+Technical expertise is not disappearing.
+
+But the cost of moving between ecosystems is collapsing.
+
+And when that happens, the value shifts.
+
+Away from syntax.
+
+Toward architecture.
+
+Away from implementation.
+
+Toward systems.
+
+Away from knowing how to write code.
+
+Toward knowing what should be built in the first place.
+
+That's why I believe AI didn't just change software engineering.
+
+It broke the language barrier of software altogether.

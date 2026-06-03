@@ -10,7 +10,7 @@ export const blogComponents = {
   p: props => (
     <p
       {...props}
-      className="!leading-10 text-base sm:text-lg md:text-xl text-gray-300 mb-6"
+      className="!leading-10 text-base sm:text-lg md:text-xl text-gray-300 mb-4"
     />
   ),
   h2: props => (
@@ -24,7 +24,7 @@ export const blogComponents = {
     <Heading as="h3" {...props} className="text-2xl md:text-3xl mt-12 mb-8" />
   ),
   pre: props => <pre {...props} className="rounded overflow-hidden my-8" />,
-  ul: props => <ul {...props} className="list-disc ml-4 my-12" />,
+  ul: props => <ul {...props} className="list-disc ml-4 my-10" />,
   ol: props => (
     <ul {...props} className="list-decimal marker:text-xl ml-4 my-12" />
   ),
